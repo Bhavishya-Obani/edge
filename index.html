@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDGE — Powering the Way You Live | Premium Switches & Lighting</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+tailwind.config={
+  theme:{
+    extend:{
+      colors:{
+        graphite:'#0A0A0B',
+        graphite2:'#141416',
+        graphite3:'#1E1E21',
+        offwhite:'#F5F3EF',
+        accent:'#D6FF2C',
+        accent2:'#00E5CC'
+      },
+      fontFamily:{
+        display:['Space Grotesk','sans-serif'],
+        sans:['Instrument Sans','sans-serif'],
+        mono:['JetBrains Mono','monospace']
+      }
+    }
+  }
+}
+</script>
+<style>
+*{scroll-behavior:smooth}
+body{font-family:'Instrument Sans',sans-serif;background:#F5F3EF;color:#0A0A0B;overflow-x:hidden}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif}
+.mono{font-family:'JetBrains Mono',monospace}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:#0A0A0B}
+::-webkit-scrollbar-thumb{background:#2a2a2e;border-radius:999px}
+::selection{background:#D6FF2C;color:#000}
+/* INTRO */
+#intro{transition:opacity .9s cubic-bezier(.4,0,.2,1), visibility .9s}
+.logo-path{stroke-dasharray:600;stroke-dashoffset:600;animation:draw 1.4s ease forwards}
+.logo-path:nth-child(2){animation-delay:.15s}
+.logo-path:nth-child(3){animation-delay:.3s}
+.logo-path:nth-child(4){animation-delay:.45s}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes pulseMove{0%{left:0%;opacity:0}10%{opacity:1}90%{opacity:1}100%{left:94%;opacity:0}}
+#pulse-dot{animation:pulseMove 2s ease-in-out infinite}
+.hero-ken{animation:ken 12s ease-in-out infinite alternate}
+@keyframes ken{0%{transform:scale(1)}100%{transform:scale(1.08) translate(1%,-1%)}}
+.light-glow.active{opacity:1!important}
+.reveal{opacity:0;transform:translateY(18px);transition:all .8s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.switch-layer{transition:transform .6s cubic-bezier(.16,1,.3,1),opacity .6s}
+.range::-webkit-slider-thumb{appearance:none;width:16px;height:16px;border-radius:999px;background:#D6FF2C;cursor:pointer;border:2px solid #000}
+.config-module{transition:all .2s}
+.config-module.active{border-color:#D6FF2C;background:#D6FF2C;color:#000}
+.pin{animation:pinPop .4s cubic-bezier(.16,1,.3,1)}
+@keyframes pinPop{0%{transform:scale(0) translate(-50%,-50%)}100%{transform:scale(1) translate(-50%,-50%)}}
+</style>
+</head>
+<body class="antialiased">
+
+<!-- INTRO -->
+<div id="intro" class="fixed inset-0 z-[100] bg-[#050507] flex flex-col items-center justify-center px-6">
+  <div class="relative">
+    <div class="flex items-center gap-[2px] md:gap-1">
+      <svg width="360" height="78" viewBox="0 0 360 78" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-[280px] md:w-[360px]">
+        <g stroke="#D6FF2C" stroke-width="1.4" stroke-linecap="square">
+          <!-- E -->
+          <path class="logo-path" d="M12 18 H42 M12 38 H32 M12 58 H42 M12 18 V58" stroke="white" style="stroke:white"/>
+          <!-- D -->
+          <path class="logo-path" d="M68 18 H92 C110 18 118 30 118 38 C118 48 110 58 92 58 H68 V18" stroke="white" style="stroke:white"/>
+          <!-- G -->
+          <path class="logo-path" d="M148 18 H188 V18 C202 18 214 26 214 38 C214 52 202 58 188 58 H160 V38 H202" stroke="white" style="stroke:white"/>
+          <!-- E -->
+          <path class="logo-path" d="M238 18 H268 M238 38 H258 M238 58 H268 M238 18 V58" stroke="white" style="stroke:white"/>
+          <!-- accent line -->
+          <path d="M4 72 H356" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+          <path id="intro-line" d="M4 72 H356" stroke="#D6FF2C" stroke-width="1" stroke-dasharray="352" stroke-dashoffset="352" style="transition:stroke-dashoffset 2.2s ease"/>
+        </g>
+        <g font-family="Space Grotesk" font-weight="500" font-size="42" letter-spacing="-2">
+          <text x="12" y="56" fill="white" style="opacity:0" id="edge-text">EDGE</text>
+        </g>
+      </svg>
+      <div class="hidden md:block ml-3 pl-6 border-l border-white/10">
+        <div class="text-white text-[10px] tracking-[0.4em] font-medium">INDIA</div>
+        <div class="text-white/40 text-[10px] tracking-[0.2em]">EST. 1998</div>
+      </div>
+    </div>
+    <div id="pulse-dot" class="absolute -bottom-[1px] left-1 w-[6px] h-[6px] bg-[#D6FF2C] rounded-full shadow-[0_0_14px_#D6FF2C]"></div>
+  </div>
+  <div class="mt-14 w-full max-w-[520px] flex items-center gap-5">
+    <span id="loader-percent" class="mono text-[11px] tracking-[0.25em] text-white/70 w-10">00%</span>
+    <div class="flex-1 h-[1px] bg-white/[0.08] relative overflow-hidden">
+      <div id="loader-bar" class="absolute inset-y-0 left-0 bg-[#D6FF2C] w-0"></div>
+    </div>
+    <span class="mono text-[10px] tracking-[0.35em] text-white/30">POWERING SPACES</span>
+  </div>
+  <button onclick="skipIntro()" class="absolute bottom-8 right-8 mono text-[10px] tracking-[0.2em] text-white/30 hover:text-white transition hidden md:block">SKIP —</button>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 mono text-[9px] tracking-[0.3em] text-white/20">
+    <span class="w-2 h-2 rounded-full bg-[#D6FF2C] animate-ping"></span> ELECTRIC PULSE SYSTEM INITIALIZING
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar" class="fixed top-0 inset-x-0 z-40 transition-all duration-500 border-b border-transparent">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10 h-[72px] flex items-center justify-between">
+    <div class="flex items-center gap-10">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-8 h-8 bg-white flex items-center justify-center">
+          <span class="font-display font-bold text-[13px] tracking-tighter leading-none">ED<br>GE</span>
+        </div>
+        <span class="font-display font-semibold tracking-[0.18em] text-sm text-white" id="nav-logo">EDGE</span>
+        <span class="hidden md:inline mono text-[9px] tracking-[0.2em] text-white/40 border-l border-white/15 pl-3 ml-1">ARCHITECTURAL<br>ELECTRICAL</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-7 mono text-[11px] tracking-[0.14em] font-medium text-white/70">
+        <a href="#showcase" class="hover:text-white transition">SYSTEM</a>
+        <a href="#categories" class="hover:text-white transition">COLLECTIONS</a>
+        <a href="#products" class="hover:text-white transition">PRODUCTS</a>
+        <a href="#professionals" class="hover:text-white transition">PROFESSIONALS</a>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="hidden md:flex items-center gap-2 mono text-[11px]">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="text-white/60 tracking-wide hidden xl:inline">QUOTE READY IN 60S</span>
+      </div>
+      <button onclick="toggleQuote()" class="relative bg-white text-black px-5 py-2.5 mono text-[11px] tracking-[0.12em] font-semibold flex items-center gap-2 hover:bg-[#D6FF2C] transition">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></svg>
+        QUOTE <span id="quote-count" class="bg-black text-white text-[10px] px-1.5 py-0.5 rounded-full hidden">0</span>
+      </button>
+      <button id="mobile-btn" class="lg:hidden w-10 h-10 border border-white/15 flex items-center justify-center text-white">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="lg:hidden hidden border-t border-white/10 bg-[#0A0A0B]/95 backdrop-blur-xl">
+    <div class="px-6 py-6 space-y-4 mono text-sm tracking-widest text-white/80">
+      <a href="#showcase" class="block">SYSTEM</a>
+      <a href="#categories" class="block">COLLECTIONS</a>
+      <a href="#products" class="block">PRODUCTS</a>
+      <a href="#visualizer" class="block">VISUALIZER</a>
+      <a href="#professionals" class="block">PROFESSIONALS</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" class="relative h-[100dvh] min-h-[640px] bg-[#050507] overflow-hidden flex items-end">
+  <div class="absolute inset-0">
+    <img id="hero-image" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=80" class="w-full h-full object-cover hero-ken opacity-90" alt="Premium modern interior">
+    <div class="absolute inset-0 bg-gradient-to-t from-[#050507] via-[#050507]/35 to-[#050507]/60"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#050507]/70 via-transparent to-transparent"></div>
+  </div>
+  <!-- progressive lights -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="light-glow absolute top-[22%] left-[28%] w-40 h-40 bg-white/15 blur-[50px] rounded-full"></div>
+    <div class="light-glow absolute top-[18%] left-[62%] w-60 h-24 bg-[#D6FF2C]/10 blur-[40px] rounded-full"></div>
+    <div class="light-glow absolute top-[42%] left-[44%] w-32 h-32 bg-white/10 blur-[35px] rounded-full"></div>
+    <div class="absolute top-[19%] left-[31%] w-[2px] h-[2px] bg-white rounded-full shadow-[0_0_12px_#fff,0_0_30px_#fff] light-glow"></div>
+    <div class="absolute top-[20%] left-[63%] w-[2px] h-[2px] bg-[#D6FF2C] rounded-full shadow-[0_0_12px_#D6FF2C] light-glow"></div>
+    <div class="absolute inset-0 opacity-[0.04]" style="background-image:linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px);background-size:60px 60px"></div>
+  </div>
+
+  <div class="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-10 pb-10 md:pb-14">
+    <div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 items-end">
+      <div>
+        <div class="inline-flex items-center gap-3 mb-6">
+          <span class="w-10 h-[1px] bg-[#D6FF2C]"></span>
+          <span class="mono text-[10px] tracking-[0.32em] text-white/70">CINEMATIC LIGHTING SYSTEM — 001</span>
+          <span class="hidden md:inline-flex items-center gap-1.5 mono text-[9px] tracking-widest text-white/40 border border-white/10 px-2 py-1 rounded-full"><span class="w-1.5 h-1.5 bg-[#D6FF2C] rounded-full animate-pulse"></span>LIVE PREVIEW</span>
+        </div>
+        <h1 class="font-display font-[600] leading-[0.82] tracking-[-0.05em] text-[#F5F3EF]">
+          <span class="block text-[44px] md:text-[68px] lg:text-[84px]">POWERING</span>
+          <span class="block text-[44px] md:text-[68px] lg:text-[84px] font-light italic text-white/90">THE WAY</span>
+          <span class="block text-[44px] md:text-[68px] lg:text-[84px] flex items-baseline gap-3">YOU LIVE<span class="w-3 h-3 md:w-4 md:h-4 bg-[#D6FF2C] inline-block -mb-1"></span></span>
+        </h1>
+        <p class="mt-6 mono text-[11px] md:text-[12px] tracking-[0.14em] text-white/55 max-w-[520px] leading-relaxed">SWITCHES. LIGHTING. ACCESSORIES. DESIGNED FOR MODERN SPACES.<br class="hidden md:block"> PRECISION ENGINEERED IN INDIA FOR ARCHITECTS WHO OBSESS OVER DETAILS.</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#products" class="group inline-flex items-center gap-3 bg-[#D6FF2C] text-black px-7 md:px-8 py-[14px] mono text-[11px] tracking-[0.16em] font-bold hover:bg-white transition">
+            EXPLORE PRODUCTS <span class="group-hover:translate-x-1 transition">→</span>
+          </a>
+          <a href="#visualizer" class="inline-flex items-center gap-3 border border-white/20 text-white px-7 md:px-8 py-[14px] mono text-[11px] tracking-[0.16em] font-semibold backdrop-blur hover:bg-white hover:text-black transition">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            EXPERIENCE IN REAL LIFE
+          </a>
+        </div>
+        <div class="mt-10 flex items-center gap-6 mono text-[10px] tracking-[0.2em] text-white/40">
+          <span class="flex items-center gap-2"><span class="w-6 h-[1px] bg-white/20"></span> SCROLL TO DISCOVER</span>
+          <span class="hidden md:flex items-center gap-2"><span class="w-1 h-1 bg-[#D6FF2C] rounded-full"></span> 60 FPS • HDR RENDER</span>
+        </div>
+      </div>
+      <div class="hidden lg:block">
+        <div class="bg-white/[0.06] backdrop-blur-xl border border-white/10 p-6 max-w-[380px] ml-auto">
+          <div class="flex items-center justify-between mb-4">
+            <span class="mono text-[10px] tracking-[0.2em] text-white/50">LIVE SWITCH FEED</span>
+            <span class="mono text-[10px] bg-[#D6FF2C] text-black px-2 py-1 font-bold">4 MODULE</span>
+          </div>
+          <div class="bg-[#F5F3EF] p-4 flex gap-3 items-center">
+            <div class="w-20 h-20 bg-[#0A0A0B] flex items-center justify-center relative overflow-hidden">
+              <div class="w-12 h-7 bg-white/90 rounded-[2px]"></div>
+              <div class="absolute bottom-1 left-1 right-1 h-[1px] bg-[#D6FF2C]"></div>
+            </div>
+            <div class="flex-1">
+              <div class="font-display font-semibold text-sm leading-none">EDGE Aura — Graphite</div>
+              <div class="mono text-[10px] text-black/50 mt-1">SKU: EA-4M-GPH • 16A</div>
+              <div class="flex gap-1 mt-2">
+                <span class="w-3 h-3 rounded-full bg-[#0A0A0B] border border-black/10"></span>
+                <span class="w-3 h-3 rounded-full bg-[#EDEBE6] border border-black/10"></span>
+                <span class="w-3 h-3 rounded-full bg-[#C9A86A] border border-black/10"></span>
+                <span class="w-3 h-3 rounded-full bg-[#D6FF2C] border border-black/10"></span>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="mono text-xs font-bold">₹ 2,840</div>
+              <div class="mono text-[10px] text-black/40 line-through">₹ 3,200</div>
+            </div>
+          </div>
+          <div class="grid grid-cols-3 gap-2 mt-3 mono text-[10px] text-white/60">
+            <div class="border border-white/10 p-2 text-center"><div class="text-white font-bold">12Y</div>WARRANTY</div>
+            <div class="border border-white/10 p-2 text-center"><div class="text-white font-bold">IP20</div>RATED</div>
+            <div class="border border-white/10 p-2 text-center"><div class="text-white font-bold"><span class="text-[#D6FF2C]">●</span> MADE</div>IN INDIA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+</section>
+
+<!-- SCROLL SHOWCASE -->
+<section id="showcase" class="relative bg-[#F5F3EF] border-t border-black/5">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10 pt-16 md:pt-24">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-10">
+      <div>
+        <div class="mono text-[10px] tracking-[0.3em] text-black/40 mb-3">01 — CINEMATIC ENGINEERING</div>
+        <h2 class="font-display text-[32px] md:text-[44px] leading-[0.9] tracking-[-0.03em] font-medium">A SWITCH, <br><span class="font-light italic">DECONSTRUCTED.</span></h2>
+      </div>
+      <p class="max-w-[420px] text-sm leading-relaxed text-black/60">We obsess over the 1mm radius. Follow the journey from raw material to a wall that glows — scroll to control time.</p>
+    </div>
+  </div>
+  <div id="showcase-sticky-wrap" class="relative h-[320vh]">
+    <div class="sticky top-0 h-[88vh] min-h-[560px] overflow-hidden bg-[#F5F3EF] flex flex-col">
+      <div class="flex-1 max-w-[1400px] mx-auto w-full px-6 md:px-10 grid lg:grid-cols-2 gap-10 items-center py-8">
+        <!-- visual -->
+        <div class="relative order-2 lg:order-1 flex items-center justify-center">
+          <div class="absolute inset-0 flex items-center justify-center opacity-[0.04]">
+            <span class="font-display text-[140px] md:text-[220px] font-bold tracking-tighter leading-none">EDGE</span>
+          </div>
+          <!-- switch stack -->
+          <div id="switch-stack" class="relative w-[320px] h-[320px] md:w-[420px] md:h-[420px] flex items-center justify-center" style="perspective:1200px">
+            <!-- shadow -->
+            <div class="absolute w-[260px] h-[80px] bg-black/15 blur-[30px] rounded-full bottom-8"></div>
+            <!-- plate -->
+            <div id="layer-plate" class="switch-layer absolute w-[260px] h-[160px] bg-[#EDEBE6] rounded-[14px] border border-black/10 shadow-[0_20px_60px_rgba(0,0,0,0.12),0_1px_0_rgba(255,255,255,0.8)_inset] flex items-center justify-center p-4">
+              <div class="w-full h-full rounded-[10px] border border-black/5 bg-gradient-to-b from-white to-[#EDEBE6] flex gap-2 p-2">
+                <div class="flex-1 bg-white rounded-[8px] border border-black/5 shadow-sm flex flex-col items-center justify-center gap-2">
+                  <div class="w-8 h-[2px] bg-black/10 rounded-full"></div>
+                  <div class="w-14 h-14 rounded-[6px] bg-[#0A0A0B] shadow-inner relative overflow-hidden flex items-center justify-center">
+                    <div class="w-8 h-0.5 bg-white/20"></div>
+                    <div class="absolute bottom-0 left-0 right-0 h-[2px] bg-[#D6FF2C] opacity-0" id="switch-glow"></div>
+                  </div>
+                  <span class="mono text-[8px] tracking-widest text-black/30">SWITCH 01</span>
+                </div>
+                <div class="flex-1 bg-white rounded-[8px] border border-black/5 shadow-sm flex flex-col items-center justify-center gap-2">
+                  <div class="w-8 h-[2px] bg-black/10 rounded-full"></div>
+                  <div class="w-14 h-14 rounded-[6px] bg-white border border-black/10 flex items-center justify-center">
+                    <div class="w-8 h-[2px] bg-black/10"></div>
+                  </div>
+                  <span class="mono text-[8px] tracking-widest text-black/30">SWITCH 02</span>
+                </div>
+              </div>
+              <div class="absolute -top-2 -right-2 bg-[#D6FF2C] text-black mono text-[10px] font-bold px-2 py-1">4M PLATE</div>
+            </div>
+            <div id="layer-mech" class="switch-layer absolute w-[220px] h-[110px] bg-[#1A1A1E] rounded-[8px] border border-white/10 flex items-center justify-around px-4">
+              <div class="w-10 h-10 rounded bg-white/10 border border-white/10"></div>
+              <div class="w-10 h-10 rounded bg-[#D6FF2C]"></div>
+              <div class="w-10 h-10 rounded bg-white/10 border border-white/10"></div>
+            </div>
+            <div id="layer-frame" class="switch-layer absolute w-[280px] h-[180px] rounded-[16px] border border-[#D6FF2C]/30 pointer-events-none"></div>
+            <!-- room fade -->
+            <div id="switch-room" class="absolute inset-0 opacity-0 transition-opacity duration-700 flex items-center justify-center">
+              <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80" class="w-[340px] h-[220px] object-cover rounded-2xl shadow-2xl" alt="">
+              <div class="absolute w-[8px] h-[14px] bg-[#EDEBE6] rounded-[2px] shadow-lg" style="left:58%;top:44%"></div>
+              <div class="absolute w-20 h-20 bg-[#D6FF2C]/20 blur-2xl rounded-full" style="left:55%;top:42%"></div>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-2 mono text-[10px] tracking-[0.2em] text-black/40">
+            <span class="w-8 h-[1px] bg-black/15"></span> DRAG TO ROTATE <span class="w-2 h-2 border border-black/20 rounded-full flex items-center justify-center">⟲</span>
+          </div>
+        </div>
+        <!-- steps -->
+        <div class="order-1 lg:order-2 space-y-6">
+          <div class="inline-flex items-center gap-2 mono text-[10px] tracking-[0.2em] text-black/40 border border-black/10 px-3 py-1.5 rounded-full">
+            <span class="w-2 h-2 bg-[#D6FF2C] rounded-full animate-pulse"></span> SCROLL-CONTROLLED • 120 FPS
+          </div>
+          <div class="space-y-4" id="showcase-steps">
+            <div class="step p-5 rounded-2xl border bg-white border-black/5 shadow-sm" data-step="0">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="w-7 h-7 rounded-full bg-black text-white flex items-center justify-center mono text-[11px]">01</span>
+                <span class="mono text-[11px] tracking-[0.18em] font-semibold">MONOLITH — ROTATION</span>
+                <span class="ml-auto mono text-[10px] text-black/30">0% — 25%</span>
+              </div>
+              <h3 class="font-display text-[18px] font-medium leading-tight">Precision milled from a single block.</h3>
+              <p class="text-sm text-black/60 mt-2 leading-relaxed">Aerospace-grade polycarbonate, 1.2mm edge radius, soft-touch matte that resists fingerprints for years.</p>
+            </div>
+            <div class="step p-5 rounded-2xl border border-black/5 bg-white/50" data-step="1">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="w-7 h-7 rounded-full bg-white border border-black/10 flex items-center justify-center mono text-[11px]">02</span>
+                <span class="mono text-[11px] tracking-[0.18em] font-semibold text-black/60">EXPLODED VIEW</span>
+                <span class="ml-auto mono text-[10px] text-black/30">25% — 50%</span>
+              </div>
+              <h3 class="font-display text-[18px] font-medium leading-tight opacity-60">Three layers. Zero rattle.</h3>
+              <p class="text-sm text-black/50 mt-2">Plate → Mechanism → Frame. Snap-fit assembly with <span class="text-black font-medium">12-year retention.</span></p>
+            </div>
+            <div class="step p-5 rounded-2xl border border-black/5 bg-white/50" data-step="2">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="w-7 h-7 rounded-full bg-white border border-black/10 flex items-center justify-center mono text-[11px]">03</span>
+                <span class="mono text-[11px] tracking-[0.18em] font-semibold text-black/60">ASSEMBLE & ENERGIZE</span>
+                <span class="ml-auto mono text-[10px] text-black/30">50% — 75%</span>
+              </div>
+              <h3 class="font-display text-[18px] font-medium leading-tight opacity-60">Current flows. Light obeys.</h3>
+              <p class="text-sm text-black/50 mt-2">Silver-alloy contacts, <span class="text-black font-medium">16A</span> rated. Watch the pulse travel.</p>
+            </div>
+            <div class="step p-5 rounded-2xl border border-black/5 bg-white/50" data-step="3">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="w-7 h-7 rounded-full bg-white border border-black/10 flex items-center justify-center mono text-[11px]">04</span>
+                <span class="mono text-[11px] tracking-[0.18em] font-semibold text-black/60">IN THE WILD</span>
+                <span class="ml-auto mono text-[10px] text-black/30">75% — 100%</span>
+              </div>
+              <h3 class="font-display text-[18px] font-medium leading-tight opacity-60">From render to real room.</h3>
+              <p class="text-sm text-black/50 mt-2">Click “Experience in Room” to place it on your wall in AR.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 pt-2">
+            <div class="flex-1 h-[2px] bg-black/10 rounded-full overflow-hidden">
+              <div id="showcase-progress" class="h-full bg-[#D6FF2C] w-0 transition-all duration-100"></div>
+            </div>
+            <span id="showcase-percent" class="mono text-xs font-bold">00%</span>
+          </div>
+        </div>
+      </div>
+      <div class="h-[1px] bg-black/5"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section id="categories" class="bg-[#0A0A0B] text-white py-16 md:py-24">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-10">
+      <div>
+        <div class="mono text-[10px] tracking-[0.3em] text-white/40 mb-3">02 — COLLECTIONS</div>
+        <h2 class="font-display text-[36px] md:text-[52px] leading-[0.85] tracking-[-0.04em]">THREE SYSTEMS.<br><span class="font-light italic text-white/70">ONE LANGUAGE.</span></h2>
+      </div>
+      <div class="mono text-[11px] tracking-[0.14em] text-white/50 max-w-[360px]">Hover to energize. Each system has its own physics — tactile, luminous, modular.</div>
+    </div>
+    <div class="grid md:grid-cols-3 gap-4 md:gap-6">
+      <!-- SWITCHES -->
+      <a href="#products" class="group relative h-[520px] overflow-hidden bg-[#141416] border border-white/[0.06] p-7 flex flex-col">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-60 group-hover:scale-[1.03] transition duration-700" alt="">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500" style="background:linear-gradient(90deg, transparent, rgba(214,255,44,0.08), transparent);transform:translateX(-100%);animation:shine 1.2s ease"></div>
+        <div class="relative z-10 flex-1">
+          <div class="flex items-center justify-between">
+            <span class="mono text-[10px] tracking-[0.2em] text-white/60 border border-white/15 px-2.5 py-1 rounded-full">01</span>
+            <span class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#D6FF2C] group-hover:text-black group-hover:border-[#D6FF2C] transition">↗</span>
+          </div>
+          <div class="mt-12">
+            <div class="w-12 h-[1px] bg-[#D6FF2C] mb-4 group-hover:w-20 transition-all"></div>
+            <h3 class="font-display text-[34px] font-bold tracking-[-0.03em] leading-none">SWITCHES</h3>
+            <p class="mono text-[10px] tracking-[0.18em] text-white/50 mt-2">MODULAR • 1M — 18M</p>
+          </div>
+        </div>
+        <div class="relative z-10">
+          <p class="text-sm leading-relaxed text-white/70 max-w-[280px]">Soft actuation, 40,000 clicks, whisper-quiet. From 6A to 32A with dimmer, USB-C & smart.</p>
+          <div class="mt-6 flex gap-2 mono text-[10px]">
+            <span class="px-2.5 py-1 bg-white text-black font-bold">40K CLICKS</span>
+            <span class="px-2.5 py-1 border border-white/20 text-white/80">16A</span>
+            <span class="px-2.5 py-1 border border-white/20 text-white/80">IP20</span>
+          </div>
+          <div class="mt-6 flex items-center gap-2 mono text-[11px] tracking-[0.14em] font-semibold">EXPLORE SWITCHES <span class="group-hover:translate-x-1 transition">→</span></div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-[2px] bg-[#D6FF2C] scale-x-0 group-hover:scale-x-100 transition duration-500 origin-left"></div>
+      </a>
+      <!-- LED -->
+      <a href="#products" class="group relative h-[520px] overflow-hidden bg-[#141416] border border-white/[0.06] p-7 flex flex-col">
+        <img src="https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=800&q=80" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-60 group-hover:scale-[1.03] transition duration-700" alt="">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-[#D6FF2C]/20 blur-[60px] rounded-full opacity-0 group-hover:opacity-100 transition duration-700"></div>
+        <div class="relative z-10 flex-1">
+          <div class="flex items-center justify-between">
+            <span class="mono text-[10px] tracking-[0.2em] text-white/60 border border-white/15 px-2.5 py-1 rounded-full">02</span>
+            <span class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition">↗</span>
+          </div>
+          <div class="mt-12">
+            <div class="w-12 h-[1px] bg-white mb-4 group-hover:w-20 transition-all"></div>
+            <h3 class="font-display text-[34px] font-bold tracking-[-0.03em] leading-none">LED<br>LIGHTING</h3>
+            <p class="mono text-[10px] tracking-[0.18em] text-white/50 mt-2">COB • PANEL • STRIP • PROFILE</p>
+          </div>
+        </div>
+        <div class="relative z-10">
+          <p class="text-sm leading-relaxed text-white/70 max-w-[280px]">CRI 95+, 50,000 hours, flicker-free drivers. Cinematic dimming from 1% to 100%.</p>
+          <div class="mt-6 flex gap-2 mono text-[10px]">
+            <span class="px-2.5 py-1 bg-white text-black font-bold">CRI 97</span>
+            <span class="px-2.5 py-1 border border-white/20">50K HRS</span>
+            <span class="px-2.5 py-1 border border-white/20">1% DIM</span>
+          </div>
+          <div class="mt-6 flex items-center gap-2 mono text-[11px] tracking-[0.14em] font-semibold">EXPLORE LIGHTING <span class="group-hover:translate-x-1 transition">→</span></div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-[2px] bg-white scale-x-0 group-hover:scale-x-100 transition duration-500 origin-left"></div>
+      </a>
+      <!-- ACCESSORIES -->
+      <a href="#products" class="group relative h-[520px] overflow-hidden bg-[#141416] border border-white/[0.06] p-7 flex flex-col">
+        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 group-hover:scale-[1.03] transition duration-700" alt="">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+        <div class="absolute inset-0 grid grid-cols-6 gap-[1px] opacity-20 group-hover:opacity-40 transition">
+          <div class="bg-white/5"></div><div class="bg-white/5"></div><div class="bg-white/5"></div><div class="bg-white/5"></div><div class="bg-white/5"></div><div class="bg-white/5"></div>
+        </div>
+        <div class="relative z-10 flex-1">
+          <div class="flex items-center justify-between">
+            <span class="mono text-[10px] tracking-[0.2em] text-white/60 border border-white/15 px-2.5 py-1 rounded-full">03</span>
+            <span class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#D6FF2C] group-hover:text-black transition">↗</span>
+          </div>
+          <div class="mt-12">
+            <div class="w-12 h-[1px] bg-white/40 mb-4 group-hover:w-20 transition-all"></div>
+            <h3 class="font-display text-[34px] font-bold tracking-[-0.03em] leading-none">ACCESSORIES</h3>
+            <p class="mono text-[10px] tracking-[0.18em] text-white/50 mt-2">PLATES • BOXES • WIRES • SMART</p>
+          </div>
+        </div>
+        <div class="relative z-10">
+          <p class="text-sm leading-relaxed text-white/70 max-w-[280px]">The invisible architecture. Flame-retardant, modular boxes, smart relays that talk to Alexa.</p>
+          <div class="mt-6 flex gap-2 mono text-[10px]">
+            <span class="px-2.5 py-1 border border-white/20">FLAME RETARDANT</span>
+            <span class="px-2.5 py-1 border border-white/20">SMART READY</span>
+          </div>
+          <div class="mt-6 flex items-center gap-2 mono text-[11px] tracking-[0.14em] font-semibold">EXPLORE ACCESSORIES <span class="group-hover:translate-x-1 transition">→</span></div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-[2px] bg-white/60 scale-x-0 group-hover:scale-x-100 transition duration-500 origin-left"></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section id="products" class="bg-[#F5F3EF] py-16 md:py-24">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <div class="flex flex-wrap gap-6 items-end justify-between mb-8">
+      <div>
+        <div class="mono text-[10px] tracking-[0.3em] text-black/40 mb-3">03 — FEATURED</div>
+        <h2 class="font-display text-[30px] md:text-[40px] leading-none tracking-[-0.03em] font-medium">BUILT FOR THE <span class="italic font-light">LONG RUN.</span></h2>
+      </div>
+      <div class="flex gap-2">
+        <button class="mono text-[11px] tracking-widest border border-black/10 px-4 py-2 bg-black text-white">ALL</button>
+        <button class="mono text-[11px] tracking-widest border border-black/10 px-4 py-2 hover:bg-white transition">SWITCHES</button>
+        <button class="mono text-[11px] tracking-widest border border-black/10 px-4 py-2 hover:bg-white transition">LIGHTING</button>
+      </div>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+      <!-- card 1 -->
+      <div class="group bg-white border border-black/5 p-3 flex flex-col hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300">
+        <div class="relative aspect-[4/3] bg-[#F5F3EF] overflow-hidden p-4 flex items-center justify-center">
+          <span class="absolute top-3 left-3 mono text-[9px] tracking-[0.14em] bg-black text-white px-2 py-1">BESTSELLER</span>
+          <span class="absolute top-3 right-3 w-7 h-7 bg-white border border-black/10 rounded-full flex items-center justify-center hover:bg-black hover:text-white transition cursor-pointer">♡</span>
+          <div class="w-[150px] h-[90px] bg-[#EDEBE6] rounded-[10px] border border-black/10 shadow flex items-center justify-center gap-1.5 p-2">
+            <div class="flex-1 h-full bg-white rounded-[6px] border border-black/5 flex items-center justify-center"><div class="w-10 h-10 bg-[#0A0A0B] rounded-[4px]"></div></div>
+            <div class="flex-1 h-full bg-white rounded-[6px] border border-black/5 flex items-center justify-center"><div class="w-10 h-10 bg-white border border-black/10 rounded-[4px]"></div></div>
+          </div>
+          <div class="absolute bottom-3 left-3 right-3 flex justify-center gap-1.5 mono text-[9px]">
+            <span class="px-2 py-1 bg-[#D6FF2C] text-black font-bold">IN ROOM →</span>
+          </div>
+        </div>
+        <div class="pt-4 pb-2 px-1 flex-1 flex flex-col">
+          <div class="mono text-[10px] tracking-[0.14em] text-black/40">SKU: EA-SW-2M-PURE • 16A</div>
+          <h3 class="font-display font-semibold text-[15px] leading-tight mt-1">Aura 2M Switch — Snow White</h3>
+          <div class="flex items-center gap-1.5 mt-2">
+            <span class="text-[11px]">Finish:</span>
+            <button class="w-4 h-4 rounded-full bg-white border-2 border-black shadow-sm"></button>
+            <button class="w-4 h-4 rounded-full bg-[#0A0A0B] border border-black/10"></button>
+            <button class="w-4 h-4 rounded-full bg-[#C9A86A] border border-black/10"></button>
+            <button class="w-4 h-4 rounded-full bg-[#D6FF2C] border border-black/10"></button>
+            <span class="mono text-[10px] text-black/40 ml-1">+2</span>
+          </div>
+          <div class="flex items-baseline gap-2 mt-3">
+            <span class="font-bold text-[16px]">₹ 1,420</span>
+            <span class="mono text-xs text-black/30 line-through">₹ 1,680</span>
+            <span class="mono text-[10px] bg-[#D6FF2C] px-1.5 py-0.5 font-bold">15% OFF</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 mt-4">
+            <button onclick="addToQuote('Aura 2M Switch — Snow White','₹ 1,420')" class="bg-black text-white mono text-[11px] tracking-[0.1em] font-semibold py-2.5 hover:bg-[#1a1a1e] transition">ADD TO QUOTE</button>
+            <button onclick="openProduct()" class="border border-black/15 mono text-[11px] tracking-[0.1em] font-semibold py-2.5 hover:bg-black hover:text-white transition">VIEW</button>
+          </div>
+          <button onclick="document.getElementById('visualizer').scrollIntoView({behavior:'smooth'})" class="mt-2 mono text-[11px] tracking-[0.1em] text-black/60 flex items-center justify-center gap-1.5 py-2 hover:text-black">◎ EXPERIENCE IN ROOM</button>
+        </div>
+      </div>
+      <!-- card 2 -->
+      <div class="group bg-white border border-black/5 p-3 flex flex-col hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300">
+        <div class="relative aspect-[4/3] bg-[#0A0A0B] overflow-hidden p-4 flex items-center justify-center">
+          <span class="absolute top-3 left-3 mono text-[9px] tracking-[0.14em] bg-[#D6FF2C] text-black px-2 py-1 font-bold">NEW — GRAPHITE</span>
+          <div class="w-[150px] h-[90px] bg-[#1A1A1E] rounded-[10px] border border-white/10 shadow flex items-center justify-center gap-1.5 p-2">
+            <div class="flex-1 h-full bg-[#252529] rounded-[6px] border border-white/10 flex items-center justify-center"><div class="w-10 h-10 bg-white rounded-[4px]"></div></div>
+            <div class="flex-1 h-full bg-[#252529] rounded-[6px] border border-white/10 flex items-center justify-center"><div class="w-10 h-10 bg-[#D6FF2C] rounded-[4px]"></div></div>
+          </div>
+        </div>
+        <div class="pt-4 pb-2 px-1 flex-1 flex flex-col">
+          <div class="mono text-[10px] tracking-[0.14em] text-black/40">SKU: EA-SW-4M-GPH • DIMMER</div>
+          <h3 class="font-display font-semibold text-[15px] leading-tight mt-1">Aura 4M Dimmer — Graphite</h3>
+          <div class="flex items-center gap-1.5 mt-2">
+            <span class="text-[11px]">Finish:</span>
+            <button class="w-4 h-4 rounded-full bg-[#0A0A0B] border-2 border-black"></button>
+            <button class="w-4 h-4 rounded-full bg-[#EDEBE6] border border-black/10"></button>
+          </div>
+          <div class="flex items-baseline gap-2 mt-3">
+            <span class="font-bold text-[16px]">₹ 2,840</span>
+            <span class="mono text-xs text-black/30 line-through">₹ 3,200</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 mt-4">
+            <button onclick="addToQuote('Aura 4M Dimmer — Graphite','₹ 2,840')" class="bg-black text-white mono text-[11px] tracking-[0.1em] font-semibold py-2.5 hover:bg-[#1a1a1e] transition">ADD TO QUOTE</button>
+            <button onclick="openProduct()" class="border border-black/15 mono text-[11px] tracking-[0.1em] font-semibold py-2.5 hover:bg-black hover:text-white transition">VIEW</button>
+          </div>
+          <button onclick="document.getElementById('visualizer').scrollIntoView({behavior:'smooth'})" class="mt-2 mono text-[11px] tracking-[0.1em] text-black/60 flex items-center justify-center gap-1.5 py-2 hover:text-black">◎ EXPERIENCE IN ROOM</button>
+        </div>
+      </div>
+      <!-- card 3 -->
+      <div class="group bg-white border border-black/5 p-3 flex flex-col hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300">
+        <div class="relative aspect-[4/3] bg-[#F5F3EF] overflow-hidden flex items-center justify-center">
+          <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" alt="">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+          <span class="absolute bottom-3 left-3 bg-white/90 backdrop-blur mono text-[10px] tracking-widest px-2 py-1 font-bold">COB DOWNLIGHT • 12W</span>
+        </div>
+        <div class="pt-4 pb-2 px-1 flex-1 flex flex-col">
+          <div class="mono text-[10px] tracking-[0.14em] text-black/40">SKU: EL-COB-12W-WW • CRI 97</div>
+          <h3 class="font-display font-semibold text-[15px] leading-tight mt-1">Lumen COB — Warm White</h3>
+          <div class="flex items-center gap-1.5 mt-2">
+            <span class="text-[11px]">Temp:</span>
+            <span class="mono text-[10px] px-2 py-1 bg-black text-white">3000K</span>
+            <span class="mono text-[10px] px-2 py-1 border border-black/10">4000K</span>
+            <span class="mono text-[10px] px-2 py-1 border border-black/10">6000K</span>
+          </div>
+          <div class="flex items-baseline gap-2 mt-3">
+            <span class="font-bold text-[16px]">₹ 1,150</span>
+            <span class="mono text-[10px] bg-black text-white px-1.5 py-0.5">50K HRS</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 mt-4">
+            <button onclick="addToQuote('Lumen COB — Warm White','₹ 1,150')" class="bg-black text-white mono text-[11px] tracking-[0.1em] font-semibold py-2.5 hover:bg-[#1a1a1e] transition">ADD TO QUOTE</button>
+            <button onclick="openProduct()" class="border border-black/15 mono text-[11px] tracking-[0.1em] font-semibold py-2.5 hover:bg-black hover:text-white transition">VIEW</button>
+          </div>
+          <button class="mt-2 mono text-[11px] tracking-[0.1em] text-black/60 flex items-center justify-center gap-1.5 py-2 hover:text-black">◎ EXPERIENCE IN ROOM</button>
+        </div>
+      </div>
+      <!-- card 4 -->
+      <div class="group bg-white border border-black/5 p-3 flex flex-col hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300">
+        <div class="relative aspect-[4/3] bg-[#EDEBE6] overflow-hidden p-4 flex items-center justify-center">
+          <span class="absolute top-3 left-3 mono text-[9px] tracking-[0.14em] bg-white border border-black/10 px-2 py-1">ACCESSORY</span>
+          <div class="grid grid-cols-3 gap-2">
+            <div class="w-14 h-14 bg-white rounded border border-black/5 shadow-sm"></div>
+            <div class="w-14 h-14 bg-[#0A0A0B] rounded border flex items-center justify-center text-white mono text-[8px]">USB-C</div>
+            <div class="w-14 h-14 bg-white rounded border border-black/5 shadow-sm flex items-center justify-center mono text-[8px]">6A</div>
+          </div>
+        </div>
+        <div class="pt-4 pb-2 px-1 flex-1 flex flex-col">
+          <div class="mono text-[10px] tracking-[0.14em] text-black/40">SKU: EA-MOD-USBC-45W</div>
+          <h3 class="font-display font-semibold text-[15px] leading-tight mt-1">Modular USB-C 45W — Fast Charge</h3>
+          <div class="flex items-center gap-1.5 mt-2">
+            <span class="text-[11px]">Finish:</span>
+            <button class="w-4 h-4 rounded-full bg-white border-2 border-black"></button>
+            <button class="w-4 h-4 rounded-full bg-[#0A0A0B] border"></button>
+          </div>
+          <div class="flex items-baseline gap-2 mt-3">
+            <span class="font-bold text-[16px]">₹ 1,890</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 mt-4">
+            <button onclick="addToQuote('Modular USB-C 45W','₹ 1,890')" class="bg-black text-white mono text-[11px] tracking-[0.1em] font-semibold py-2.5 hover:bg-[#1a1a1e] transition">ADD TO QUOTE</button>
+            <button onclick="openProduct()" class="border border-black/15 mono text-[11px] tracking-[0.1em] font-semibold py-2.5 hover:bg-black hover:text-white transition">VIEW</button>
+          </div>
+          <button class="mt-2 mono text-[11px] tracking-[0.1em] text-black/60 flex items-center justify-center gap-1.5 py-2 hover:text-black">◎ EXPERIENCE IN ROOM</button>
+        </div>
+      </div>
+    </div>
+    <div class="mt-8 flex justify-center">
+      <a href="#" class="mono text-[11px] tracking-[0.18em] font-semibold border border-black/15 px-8 py-3 hover:bg-black hover:text-white transition">VIEW ALL 240+ PRODUCTS →</a>
+    </div>
+  </div>
+</section>
+
+<!-- EDGE EXPERIENCE -->
+<section class="bg-[#0A0A0B] text-white py-16 md:py-24">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-10">
+      <div>
+        <div class="mono text-[10px] tracking-[0.3em] text-white/40 mb-3">04 — EDGE EXPERIENCE</div>
+        <h2 class="font-display text-[32px] md:text-[44px] leading-[0.9] tracking-[-0.03em]">DON’T JUST BUY.<br><span class="font-light italic text-white/60">EXPERIENCE.</span></h2>
+      </div>
+      <p class="mono text-[11px] tracking-[0.14em] text-white/40 max-w-[360px]">Three gateways from curiosity to certainty — quotation, expertise, and reality.</p>
+    </div>
+    <div class="grid lg:grid-cols-3 gap-5">
+      <div class="group relative bg-[#141416] border border-white/10 overflow-hidden p-7 flex flex-col min-h-[420px]">
+        <div class="absolute -right-6 -top-6 w-32 h-32 border border-[#D6FF2C]/20 rounded-full group-hover:scale-110 transition duration-700"></div>
+        <div class="w-10 h-10 bg-[#D6FF2C] text-black flex items-center justify-center">◈</div>
+        <h3 class="font-display text-[22px] font-semibold leading-tight mt-6">Get Quotation<br>in 1 Minute</h3>
+        <p class="text-sm text-white/60 leading-relaxed mt-3">Upload your floor plan or BOQ. Our AI reads rooms, counts points, and builds a ready-to-share quote.</p>
+        <div class="mt-6 bg-black/40 border border-white/10 p-4">
+          <div class="flex items-center gap-2 mono text-[10px] tracking-widest text-white/50 mb-3"><span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span> AI FLOW</div>
+          <div class="flex items-center gap-2 mono text-[11px]">
+            <span class="px-2 py-1 bg-white text-black font-bold">UPLOAD</span> <span class="text-white/20">→</span> <span class="px-2 py-1 border border-white/20">ANALYZE</span> <span class="text-white/20">→</span> <span class="px-2 py-1 bg-[#D6FF2C] text-black font-bold">QUOTE</span>
+          </div>
+          <div class="mt-3 h-1.5 bg-white/10 rounded-full overflow-hidden"><div class="h-full w-[68%] bg-[#D6FF2C]"></div></div>
+        </div>
+        <button onclick="document.getElementById('quotation').scrollIntoView({behavior:'smooth'})" class="mt-auto w-full bg-white text-black mono text-[11px] tracking-[0.14em] font-bold py-3.5 hover:bg-[#D6FF2C] transition">START QUOTATION — 60 SECONDS</button>
+      </div>
+      <div class="group relative bg-[#141416] border border-white/10 overflow-hidden p-7 flex flex-col min-h-[420px]">
+        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-30 transition" alt="">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#141416] via-[#141416]/60 to-transparent"></div>
+        <div class="relative z-10 flex flex-col h-full">
+          <div class="w-10 h-10 bg-white text-black flex items-center justify-center">◎</div>
+          <h3 class="font-display text-[22px] font-semibold leading-tight mt-6">Find an EDGE<br>Electrician</h3>
+          <p class="text-sm text-white/60 leading-relaxed mt-3">Verified, trained, and rated. 2,400+ across India — we match you in 24 hours.</p>
+          <div class="mt-6 space-y-2">
+            <div class="flex items-center gap-3 bg-black/50 border border-white/10 p-3">
+              <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-black font-bold text-xs">R</div>
+              <div class="flex-1"><div class="text-sm font-medium leading-none">Ramesh K. • Delhi</div><div class="mono text-[10px] text-white/50">★ 4.9 • 312 installs</div></div>
+              <span class="mono text-[10px] bg-emerald-500 text-white px-2 py-1">AVAILABLE</span>
+            </div>
+            <div class="flex items-center gap-2 mono text-[10px] text-white/50"><span class="w-1 h-1 bg-white/40 rounded-full"></span> Average response: 2.4 hours</div>
+          </div>
+          <button onclick="openFindElectrician()" class="mt-auto w-full border border-white/20 text-white mono text-[11px] tracking-[0.14em] font-bold py-3.5 hover:bg-white hover:text-black transition">FIND NEAR ME</button>
+        </div>
+      </div>
+      <div class="group relative bg-[#D6FF2C] text-black overflow-hidden p-7 flex flex-col min-h-[420px]">
+        <div class="absolute right-0 top-0 w-40 h-40 bg-black/10 blur-3xl rounded-full"></div>
+        <div class="w-10 h-10 bg-black text-[#D6FF2C] flex items-center justify-center">⬢</div>
+        <h3 class="font-display text-[22px] font-bold leading-tight mt-6">Experience<br>Products in Real Life</h3>
+        <p class="text-sm leading-relaxed mt-3 text-black/70">AR Visualizer + Room Designer. See the switch on your wall before you buy — true-to-scale, true finish.</p>
+        <div class="mt-6 bg-black text-white p-3 flex gap-2 mono text-[10px] items-center">
+          <span class="w-6 h-6 bg-[#D6FF2C] text-black flex items-center justify-center">AR</span> REAL-LIFE VISUALIZER • TRY ON YOUR WALL
+          <span class="ml-auto w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+        </div>
+        <div class="mt-4 relative h-[110px] bg-black/5 rounded-lg overflow-hidden border border-black/10">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" alt="">
+          <div class="absolute left-[48%] top-[46%] w-[34px] h-[22px] bg-white border border-black/10 shadow-[0_6px_18px_rgba(0,0,0,0.2)] rounded-[3px] flex items-center justify-center"><div class="w-6 h-1 bg-black/10"></div></div>
+          <div class="absolute left-[46%] top-[44%] w-10 h-10 bg-[#D6FF2C]/30 blur-xl rounded-full"></div>
+        </div>
+        <button onclick="document.getElementById('visualizer').scrollIntoView({behavior:'smooth'})" class="mt-auto w-full bg-black text-white mono text-[11px] tracking-[0.14em] font-bold py-3.5 hover:bg-black/80 transition">LAUNCH VISUALIZER →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI QUOTATION -->
+<section id="quotation" class="bg-[#F5F3EF] py-16 md:py-24 border-t border-black/5">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 items-start">
+      <div>
+        <div class="mono text-[10px] tracking-[0.3em] text-black/40 mb-3">05 — AI QUOTATION</div>
+        <h2 class="font-display text-[30px] md:text-[40px] leading-[0.9] tracking-[-0.03em] font-medium">FROM BLUEPRINT<br><span class="italic font-light">TO BILL IN 60 SECONDS.</span></h2>
+        <p class="text-sm text-black/60 leading-relaxed mt-4 max-w-[520px]">Upload any floor plan, BOQ, or even a photo of your distribution board. Our AI counts points, suggests circuits, and prices everything with live dealer stock.</p>
+        <div id="drop-zone" class="mt-8 border-[1.5px] border-dashed border-black/15 bg-white p-8 md:p-10 text-center hover:border-black/30 hover:bg-[#FFFEFB] transition cursor-pointer group">
+          <div class="w-12 h-12 mx-auto bg-black text-white flex items-center justify-center group-hover:bg-[#D6FF2C] group-hover:text-black transition">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+          </div>
+          <div class="font-display font-semibold mt-4">Drop your plan here</div>
+          <div class="mono text-[11px] text-black/50 mt-1">PDF, JPG, PNG, DWG — up to 25 MB • AI reads handwriting too</div>
+          <div class="mt-5 flex flex-wrap justify-center gap-2 mono text-[10px]">
+            <span class="px-3 py-1.5 border border-black/10 bg-[#F5F3EF]">2BHK_PLAN.PDF</span>
+            <span class="px-3 py-1.5 border border-black/10">BOQ_EXCEL.XLSX</span>
+            <span class="px-3 py-1.5 border border-black/10">SITE_PHOTO.JPG</span>
+          </div>
+          <label class="mt-6 inline-flex items-center gap-2 bg-black text-white mono text-[11px] tracking-[0.14em] font-bold px-6 py-3 cursor-pointer hover:bg-[#1a1a1e] transition">
+            <input type="file" id="quote-file" class="hidden" accept=".pdf,.jpg,.png,.xlsx,.dwg" onchange="handleQuoteFile(this)">
+            BROWSE FILES
+          </label>
+          <div class="mono text-[10px] text-black/30 mt-3">Or paste a BOQ link • Works with WhatsApp forwards</div>
+        </div>
+      </div>
+      <div class="bg-white border border-black/10 p-6 md:p-8 shadow-[0_16px_50px_rgba(0,0,0,0.06)]">
+        <div class="flex items-center justify-between mb-6">
+          <div class="mono text-[11px] tracking-[0.14em] font-bold">QUOTATION FLOW</div>
+          <span id="quote-status" class="mono text-[10px] px-2 py-1 bg-[#D6FF2C] text-black font-bold">READY TO UPLOAD</span>
+        </div>
+        <div class="space-y-4" id="quote-flow">
+          <div class="flex gap-4">
+            <div class="flex flex-col items-center">
+              <div class="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center mono text-xs">1</div>
+              <div class="w-[1px] flex-1 bg-black/10 mt-2"></div>
+            </div>
+            <div class="flex-1 pb-6">
+              <div class="font-display font-semibold text-sm">Upload & Auto-Detect</div>
+              <p class="text-xs text-black/60 mt-1">AI identifies rooms, switch points, and load. Highlights missing earthing.</p>
+              <div class="mt-3 flex gap-2">
+                <span class="mono text-[10px] px-2 py-1 bg-[#F5F3EF] border border-black/5">Living: 8 points</span>
+                <span class="mono text-[10px] px-2 py-1 bg-[#F5F3EF] border border-black/5">Kitchen: 6 points</span>
+                <span class="mono text-[10px] px-2 py-1 bg-[#D6FF2C] font-bold">TOTAL 42</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex gap-4 opacity-60" id="flow-2">
+            <div class="flex flex-col items-center">
+              <div class="w-8 h-8 rounded-full bg-white border border-black/15 flex items-center justify-center mono text-xs">2</div>
+              <div class="w-[1px] flex-1 bg-black/10 mt-2"></div>
+            </div>
+            <div class="flex-1 pb-6">
+              <div class="font-display font-semibold text-sm">Smart Recommendation</div>
+              <p class="text-xs text-black/60 mt-1">Suggests dimmers for living, 16A for AC, USB-C near bed — with reasoning.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 opacity-60" id="flow-3">
+            <div class="flex flex-col items-center">
+              <div class="w-8 h-8 rounded-full bg-white border border-black/15 flex items-center justify-center mono text-xs">3</div>
+            </div>
+            <div class="flex-1">
+              <div class="font-display font-semibold text-sm">Live Quotation</div>
+              <p class="text-xs text-black/60 mt-1">Dealer price + GST + installation estimate. Share on WhatsApp or email.</p>
+            </div>
+          </div>
+        </div>
+        <div id="quote-result" class="hidden mt-6 border border-black/10 bg-[#F5F3EF] p-4">
+          <div class="flex items-center justify-between mono text-[11px] font-bold"><span>BILL OF QUANTITIES</span><span class="text-black/40">42 ITEMS</span></div>
+          <div class="mt-3 space-y-2 mono text-xs">
+            <div class="flex justify-between"><span>Aura 2M Switch x 18</span><span class="font-bold">₹ 25,560</span></div>
+            <div class="flex justify-between"><span>4M Dimmer x 4</span><span class="font-bold">₹ 11,360</span></div>
+            <div class="flex justify-between"><span>COB 12W x 12</span><span class="font-bold">₹ 13,800</span></div>
+            <div class="flex justify-between"><span>Accessories & Boxes</span><span class="font-bold">₹ 8,420</span></div>
+            <div class="h-[1px] bg-black/10 my-2"></div>
+            <div class="flex justify-between text-sm font-bold"><span>TOTAL (incl. GST)</span><span>₹ 69,540</span></div>
+          </div>
+          <div class="grid grid-cols-2 gap-2 mt-4">
+            <button class="bg-black text-white mono text-[11px] font-bold py-2.5">SHARE ON WHATSAPP</button>
+            <button class="border border-black/15 bg-white mono text-[11px] font-bold py-2.5">DOWNLOAD PDF</button>
+          </div>
+        </div>
+        <div class="mt-6 flex items-center gap-2 mono text-[10px] text-black/40">
+          <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span> Avg. processing: 47 seconds • 12,400 quotes generated this month
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISUALIZER -->
+<section id="visualizer" class="bg-[#0A0A0B] text-white py-16 md:py-24">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-8">
+      <div>
+        <div class="mono text-[10px] tracking-[0.3em] text-white/40 mb-3">06 — REAL-LIFE VISUALIZER</div>
+        <h2 class="font-display text-[30px] md:text-[42px] leading-none tracking-[-0.03em]">SEE IT <span class="italic font-light text-white/60">ON YOUR WALL.</span></h2>
+      </div>
+      <div class="mono text-[11px] text-white/50 border border-white/10 px-4 py-2">AR • TRUE-TO-SCALE • TRUE FINISH • SHADOW ACCURATE</div>
+    </div>
+    <div class="grid lg:grid-cols-[1.35fr_0.85fr] gap-6">
+      <div class="relative bg-[#141416] border border-white/10 overflow-hidden">
+        <div class="absolute top-4 left-4 z-10 flex items-center gap-2">
+          <span class="mono text-[10px] tracking-widest bg-[#D6FF2C] text-black px-2 py-1 font-bold">LIVE PREVIEW</span>
+          <span class="mono text-[10px] tracking-widest bg-black/60 backdrop-blur border border-white/15 text-white px-2 py-1">LIVING ROOM • 14:32 • 32°C</span>
+        </div>
+        <div class="absolute top-4 right-4 z-10 flex gap-2">
+          <button class="w-8 h-8 bg-black/60 backdrop-blur border border-white/15 text-white flex items-center justify-center hover:bg-white hover:text-black transition">⛶</button>
+          <button class="w-8 h-8 bg-black/60 backdrop-blur border border-white/15 text-white flex items-center justify-center">⚙</button>
+        </div>
+        <div id="viz-stage" class="relative h-[420px] md:h-[520px] overflow-hidden select-none">
+          <img id="viz-room" src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Room">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"></div>
+          <!-- product overlay -->
+          <div id="viz-product" class="absolute w-[96px] h-[62px] bg-[#EDEBE6] rounded-[8px] border border-black/15 shadow-[0_18px_40px_rgba(0,0,0,0.35)] flex items-center justify-center cursor-grab active:cursor-grabbing" style="left:58%;top:41%;touch-action:none">
+            <div class="w-[86px] h-[52px] bg-white rounded-[6px] border border-black/5 flex gap-1 p-1">
+              <div class="flex-1 bg-white border border-black/5 rounded-[4px] flex items-center justify-center"><div class="w-7 h-7 bg-[#0A0A0B] rounded-[3px]"></div></div>
+              <div class="flex-1 bg-white border border-black/5 rounded-[4px] flex items-center justify-center"><div class="w-7 h-[3px] bg-black/15"></div></div>
+            </div>
+            <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-10 h-[6px] bg-black/20 blur-[6px] rounded-full"></div>
+            <div class="absolute -top-2 -right-2 w-6 h-6 bg-[#D6FF2C] text-black rounded-full flex items-center justify-center mono text-[10px] font-bold">↔</div>
+          </div>
+          <div id="viz-glow" class="absolute w-24 h-24 bg-[#D6FF2C]/20 blur-2xl rounded-full pointer-events-none" style="left:56%;top:38%"></div>
+        </div>
+        <div class="flex items-center justify-between p-3 bg-black/40 border-t border-white/10 mono text-[10px] tracking-widest text-white/60">
+          <span>DRAG TO MOVE • PINCH TO SCALE • DOUBLE-TAP TO ROTATE</span>
+          <span class="hidden md:inline">SCALE 1:1 • SHADOW: ON</span>
+        </div>
+      </div>
+      <div class="bg-white text-black p-6 md:p-7 border border-black/5">
+        <div class="flex items-center justify-between">
+          <h3 class="font-display font-semibold text-[18px]">Customize</h3>
+          <span class="mono text-[10px] tracking-widest border border-black/10 px-2 py-1">4M PLATE • 2 MODULES</span>
+        </div>
+        <div class="mt-5">
+          <div class="mono text-[11px] tracking-[0.14em] font-bold mb-2">SELECT MODEL</div>
+          <div class="grid grid-cols-3 gap-2">
+            <button onclick="setVizModel('aura')" class="viz-model active border-2 border-black p-2 bg-[#F5F3EF] text-center">
+              <div class="w-full h-10 bg-[#EDEBE6] border border-black/10 rounded flex items-center justify-center"><div class="w-6 h-6 bg-[#0A0A0B] rounded-sm"></div></div>
+              <div class="mono text-[10px] font-bold mt-1">AURA</div>
+            </button>
+            <button onclick="setVizModel('edge')" class="viz-model border border-black/10 p-2 bg-white text-center opacity-70">
+              <div class="w-full h-10 bg-[#0A0A0B] rounded flex items-center justify-center"><div class="w-6 h-6 bg-white rounded-sm"></div></div>
+              <div class="mono text-[10px] font-bold mt-1">EDGE PRO</div>
+            </button>
+            <button onclick="setVizModel('lumen')" class="viz-model border border-black/10 p-2 bg-white text-center opacity-70">
+              <div class="w-full h-10 bg-white border border-black/10 rounded-full flex items-center justify-center text-[10px]">○</div>
+              <div class="mono text-[10px] font-bold mt-1">LUMEN</div>
+            </button>
+          </div>
+        </div>
+        <div class="mt-6">
+          <div class="mono text-[11px] tracking-[0.14em] font-bold mb-2">FINISH</div>
+          <div class="flex gap-2">
+            <button onclick="setVizFinish('#EDEBE6','#ffffff')" class="viz-finish w-9 h-9 rounded-full bg-[#EDEBE6] border-2 border-black ring-2 ring-black/10"></button>
+            <button onclick="setVizFinish('#0A0A0B','#1A1A1E')" class="viz-finish w-9 h-9 rounded-full bg-[#0A0A0B] border border-black/10"></button>
+            <button onclick="setVizFinish('#C9A86A','#D8B98A')" class="viz-finish w-9 h-9 rounded-full bg-[#C9A86A] border border-black/10"></button>
+            <button onclick="setVizFinish('#D6FF2C','#E0FF57')" class="viz-finish w-9 h-9 rounded-full bg-[#D6FF2C] border border-black/10"></button>
+            <button onclick="setVizFinish('#8A8A8E','#A0A0A4')" class="viz-finish w-9 h-9 rounded-full bg-[#8A8A8E] border border-black/10"></button>
+          </div>
+          <div class="mono text-[11px] text-black/50 mt-2" id="viz-finish-name">Snow White — Soft matte, fingerprint resistant</div>
+        </div>
+        <div class="mt-6">
+          <div class="flex items-center justify-between mono text-[11px] tracking-[0.14em] font-bold"><span>BRIGHTNESS</span><span id="viz-brightness-val" class="font-mono">78%</span></div>
+          <input id="viz-brightness" type="range" min="10" max="100" value="78" class="range w-full mt-2 accent-black">
+          <div class="h-2 bg-black/5 rounded-full mt-3 overflow-hidden"><div id="viz-brightness-bar" class="h-full bg-[#D6FF2C] w-[78%]"></div></div>
+        </div>
+        <div class="mt-6 grid grid-cols-2 gap-3">
+          <button class="bg-black text-white mono text-[11px] tracking-[0.12em] font-bold py-3">ADD TO QUOTE — ₹ 1,420</button>
+          <button class="border border-black/15 mono text-[11px] tracking-[0.12em] font-bold py-3 hover:bg-black hover:text-white transition">BOOK AR DEMO</button>
+        </div>
+        <div class="mt-4 mono text-[10px] leading-relaxed text-black/50">Visualizer uses your camera and LiDAR if available. Colors are calibrated to factory finish under D65 lighting.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="bg-[#F5F3EF] py-16 md:py-24 border-t border-black/5">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10 grid lg:grid-cols-2 gap-12 items-center">
+    <div class="order-2 lg:order-1">
+      <div class="mono text-[10px] tracking-[0.3em] text-black/40 mb-3">07 — ABOUT EDGE</div>
+      <h2 class="font-display text-[34px] md:text-[44px] leading-[0.9] tracking-[-0.04em]">WE MAKE <br><span class="italic font-light">ELECTRICITY</span> BEAUTIFUL.</h2>
+      <p class="text-[15px] leading-relaxed text-black/70 mt-5 max-w-[560px]">For 26 years we’ve chased the perfect click. Not the loudest, not the cheapest — the one that feels inevitable. The one your thumb remembers.</p>
+      <div class="mt-8 grid sm:grid-cols-3 gap-4">
+        <div class="bg-white border border-black/5 p-4">
+          <div class="font-display text-[28px] font-bold leading-none">26<span class="text-[#D6FF2C]">.</span></div>
+          <div class="mono text-[10px] tracking-[0.14em] text-black/50 mt-1">YEARS • 12 PATENTS</div>
+        </div>
+        <div class="bg-white border border-black/5 p-4">
+          <div class="font-display text-[28px] font-bold leading-none">4.2M</div>
+          <div class="mono text-[10px] tracking-[0.14em] text-black/50 mt-1">HOMES POWERED</div>
+        </div>
+        <div class="bg-white border border-black/5 p-4">
+          <div class="font-display text-[28px] font-bold leading-none">12Y</div>
+          <div class="mono text-[10px] tracking-[0.14em] text-black/50 mt-1">WARRANTY • MADE IN INDIA</div>
+        </div>
+      </div>
+      <div class="mt-8 flex flex-wrap gap-3 mono text-[11px] tracking-[0.14em] font-semibold">
+        <a href="#" class="border border-black/15 px-6 py-3 hover:bg-black hover:text-white transition">OUR STORY →</a>
+        <a href="#" class="bg-[#D6FF2C] px-6 py-3 hover:bg-black hover:text-white transition">VISIT FACTORY</a>
+      </div>
+    </div>
+    <div class="order-1 lg:order-2 relative flex items-center justify-center">
+      <div class="relative w-[340px] h-[340px] md:w-[440px] md:h-[440px] flex items-center justify-center">
+        <div class="absolute inset-0 bg-gradient-to-b from-white to-[#EDEBE6] rounded-[32px] border border-black/5 shadow-[0_30px_80px_rgba(0,0,0,0.08)]"></div>
+        <div class="absolute w-[320px] h-24 bg-black/10 blur-2xl rounded-full bottom-10"></div>
+        <!-- interactive 3d switch -->
+        <div id="about-switch" class="relative w-[220px] h-[140px] bg-[#0A0A0B] rounded-[16px] p-3 shadow-[0_20px_50px_rgba(0,0,0,0.25)] cursor-pointer select-none" onclick="toggleAboutSwitch()">
+          <div class="w-full h-full bg-[#1A1A1E] rounded-[12px] border border-white/10 p-2 flex gap-2">
+            <div id="about-toggle-1" class="flex-1 bg-[#252529] rounded-[10px] border border-white/10 flex flex-col items-center justify-center gap-2 relative overflow-hidden transition-all duration-300">
+              <div class="w-10 h-10 bg-white rounded-[8px] shadow flex items-center justify-center transition-transform duration-300" id="toggle-knob-1"><div class="w-3 h-[2px] bg-black/20"></div></div>
+              <span class="mono text-[9px] tracking-[0.14em] text-white/40">LIVING</span>
+              <div class="absolute bottom-0 left-0 right-0 h-[2px] bg-[#D6FF2C] opacity-0 transition" id="toggle-glow-1"></div>
+            </div>
+            <div id="about-toggle-2" class="flex-1 bg-[#252529] rounded-[10px] border border-white/10 flex flex-col items-center justify-center gap-2 relative overflow-hidden transition-all duration-300">
+              <div class="w-10 h-10 bg-[#2A2A30] rounded-[8px] flex items-center justify-center" id="toggle-knob-2"><div class="w-3 h-[2px] bg-white/20"></div></div>
+              <span class="mono text-[9px] tracking-[0.14em] text-white/40">MOOD</span>
+              <div class="absolute bottom-0 left-0 right-0 h-[2px] bg-[#D6FF2C] opacity-0" id="toggle-glow-2"></div>
+            </div>
+          </div>
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#D6FF2C] text-black mono text-[10px] font-bold px-3 py-1 rounded-full shadow">TAP TO TOGGLE</div>
+        </div>
+        <div id="about-glow" class="absolute w-64 h-64 bg-[#D6FF2C]/15 blur-[60px] rounded-full opacity-0 transition duration-500 pointer-events-none"></div>
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 mono text-[10px] tracking-[0.2em] text-black/30 flex items-center gap-2"><span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span> <span id="about-status">SYSTEM STANDBY — TAP SWITCH</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROOM DESIGNER -->
+<section class="bg-[#0A0A0B] text-white py-16 md:py-24">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 items-start">
+      <div>
+        <div class="mono text-[10px] tracking-[0.3em] text-white/40 mb-3">08 — ROOM DESIGNER</div>
+        <h2 class="font-display text-[30px] md:text-[40px] leading-none tracking-[-0.03em]">UPLOAD A PHOTO.<br><span class="italic font-light text-white/60">DESIGN THE ROOM.</span></h2>
+        <p class="text-sm text-white/60 leading-relaxed mt-4">Drop a photo of your wall. Place any EDGE product — switches, COBs, profiles — and see the whole scheme. Export a shopping list in one tap.</p>
+        <div class="mt-6 bg-[#141416] border border-white/10 p-5">
+          <div class="mono text-[11px] tracking-[0.14em] font-bold mb-3">PRODUCT PALETTE — TAP THEN TAP WALL</div>
+          <div class="grid grid-cols-4 gap-2">
+            <button onclick="setRoomProduct('switch')" class="room-palette active bg-[#D6FF2C] text-black p-2 flex flex-col items-center gap-1"><div class="w-8 h-8 bg-black rounded flex items-center justify-center text-[10px] text-white">━</div><span class="mono text-[9px] font-bold">SWITCH</span></button>
+            <button onclick="setRoomProduct('cob')" class="room-palette bg-white/10 border border-white/15 p-2 flex flex-col items-center gap-1 hover:bg-white hover:text-black transition"><div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-black">○</div><span class="mono text-[9px] font-bold">COB</span></button>
+            <button onclick="setRoomProduct('profile')" class="room-palette bg-white/10 border border-white/15 p-2 flex flex-col items-center gap-1 hover:bg-white hover:text-black transition"><div class="w-8 h-4 bg-white"></div><span class="mono text-[9px] font-bold">PROFILE</span></button>
+            <button onclick="setRoomProduct('socket')" class="room-palette bg-white/10 border border-white/15 p-2 flex flex-col items-center gap-1 hover:bg-white hover:text-black transition"><div class="w-8 h-8 bg-white/20 rounded flex items-center justify-center mono text-[8px]">16A</div><span class="mono text-[9px] font-bold">SOCKET</span></button>
+          </div>
+          <label class="mt-4 flex items-center justify-center gap-2 w-full border border-dashed border-white/20 mono text-[11px] tracking-widest py-3 hover:bg-white hover:text-black transition cursor-pointer">
+            <input type="file" id="room-upload" accept="image/*" class="hidden" onchange="handleRoomUpload(this)"> UPLOAD YOUR PHOTO — OR USE SAMPLE
+          </label>
+          <div class="mt-3 flex items-center justify-between mono text-[10px] text-white/40">
+            <span id="room-count">0 products placed</span>
+            <button onclick="clearRoom()" class="underline hover:text-white">CLEAR</button>
+          </div>
+        </div>
+      </div>
+      <div class="relative bg-[#141416] border border-white/10 overflow-hidden">
+        <div id="room-stage" class="relative h-[420px] md:h-[520px] overflow-hidden cursor-crosshair" onclick="placeRoomPin(event)">
+          <img id="room-image" src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Room to design">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none"></div>
+          <div class="absolute top-4 left-4 mono text-[10px] tracking-widest bg-black/60 backdrop-blur border border-white/15 px-3 py-1.5">TAP WALL TO PLACE • DRAG TO MOVE</div>
+        </div>
+        <div class="p-3 bg-black/40 border-t border-white/10 flex items-center gap-3 mono text-[11px]">
+          <span class="hidden md:inline text-white/60">Placed products automatically build your quote.</span>
+          <button onclick="toggleQuote()" class="ml-auto bg-[#D6FF2C] text-black px-4 py-2 font-bold hover:bg-white transition">VIEW QUOTE →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIGURATOR -->
+<section id="configurator" class="bg-[#F5F3EF] py-16 md:py-24">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-8">
+      <div>
+        <div class="mono text-[10px] tracking-[0.3em] text-black/40 mb-3">09 — MODULAR BUILDER</div>
+        <h2 class="font-display text-[30px] md:text-[40px] leading-none tracking-[-0.03em]">BUILD YOUR <span class="italic font-light">SWITCH.</span></h2>
+        <p class="mono text-[11px] tracking-[0.14em] text-black/50 mt-2">1M TO 18M • MIX SWITCH + SOCKET + USB-C + DIMMER • LIVE PRICE</p>
+      </div>
+      <div class="mono text-[11px] border border-black/10 px-3 py-2 bg-white">FRAME: <span id="cfg-frame-label" class="font-bold">4M — GRAPHITE</span></div>
+    </div>
+    <div class="grid lg:grid-cols-[1.2fr_0.8fr] gap-8">
+      <div class="bg-white border border-black/10 p-6 md:p-10 flex flex-col items-center">
+        <div id="cfg-preview" class="w-full max-w-[520px] bg-[#EDEBE6] rounded-[16px] border border-black/10 p-4 shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
+          <div class="bg-white rounded-[12px] border border-black/5 p-3 grid gap-2" id="cfg-grid" style="grid-template-columns:repeat(2,1fr)">
+            <!-- modules injected -->
+          </div>
+          <div class="flex items-center justify-between mt-4 mono text-[11px]">
+            <span class="text-black/50">EDGE Aura • 4M Plate • Graphite</span>
+            <span class="font-bold">IP20 • 16A</span>
+          </div>
+        </div>
+        <div class="mt-8 flex items-center gap-4 mono text-sm">
+          <span class="text-black/50">TOTAL</span>
+          <span id="cfg-price" class="font-display text-[28px] font-bold leading-none">₹ 2,840</span>
+          <span class="text-black/30 line-through">₹ 3,200</span>
+          <button onclick="addToQuote('Custom 4M Builder — Graphite', document.getElementById('cfg-price').innerText)" class="ml-4 bg-black text-white px-6 py-2.5 mono text-[11px] tracking-[0.14em] font-bold hover:bg-[#D6FF2C] hover:text-black transition">ADD TO QUOTE</button>
+        </div>
+      </div>
+      <div class="space-y-6">
+        <div class="bg-white border border-black/10 p-6">
+          <div class="mono text-[11px] tracking-[0.14em] font-bold mb-3">FRAME SIZE</div>
+          <div class="grid grid-cols-4 gap-2">
+            <button onclick="setFrame(2)" class="cfg-frame border border-black/10 py-2.5 mono text-xs font-bold hover:border-black transition">2M</button>
+            <button onclick="setFrame(4)" class="cfg-frame active bg-black text-white border border-black py-2.5 mono text-xs font-bold">4M</button>
+            <button onclick="setFrame(6)" class="cfg-frame border border-black/10 py-2.5 mono text-xs font-bold hover:border-black transition">6M</button>
+            <button onclick="setFrame(8)" class="cfg-frame border border-black/10 py-2.5 mono text-xs font-bold hover:border-black transition">8M</button>
+          </div>
+          <div class="mono text-[11px] tracking-[0.14em] font-bold mt-6 mb-3">FINISH</div>
+          <div class="flex gap-2">
+            <button onclick="setCfgFinish('Snow White')" class="cfg-finish active w-8 h-8 rounded-full bg-[#EDEBE6] border-2 border-black"></button>
+            <button onclick="setCfgFinish('Graphite')" class="cfg-finish w-8 h-8 rounded-full bg-[#0A0A0B] border border-black/10"></button>
+            <button onclick="setCfgFinish('Champagne')" class="cfg-finish w-8 h-8 rounded-full bg-[#C9A86A] border border-black/10"></button>
+            <button onclick="setCfgFinish('Titanium')" class="cfg-finish w-8 h-8 rounded-full bg-[#8A8A8E] border border-black/10"></button>
+          </div>
+        </div>
+        <div class="bg-white border border-black/10 p-6">
+          <div class="mono text-[11px] tracking-[0.14em] font-bold mb-3">MODULES — TAP TO ADD</div>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="addModule('switch')" class="config-module border border-black/10 p-3 text-left hover:border-black transition">
+              <div class="font-display font-semibold text-sm leading-none">Switch 6A</div>
+              <div class="mono text-[10px] text-black/50">₹ 420 • 1M</div>
+            </button>
+            <button onclick="addModule('dimmer')" class="config-module border border-black/10 p-3 text-left hover:border-black transition">
+              <div class="font-display font-semibold text-sm leading-none">Dimmer</div>
+              <div class="mono text-[10px] text-black/50">₹ 890 • 1M</div>
+            </button>
+            <button onclick="addModule('socket')" class="config-module border border-black/10 p-3 text-left hover:border-black transition">
+              <div class="font-display font-semibold text-sm leading-none">Socket 16A</div>
+              <div class="mono text-[10px] text-black/50">₹ 560 • 2M</div>
+            </button>
+            <button onclick="addModule('usbc')" class="config-module border border-black/10 p-3 text-left hover:border-black transition">
+              <div class="font-display font-semibold text-sm leading-none">USB-C 45W</div>
+              <div class="mono text-[10px] text-black/50">₹ 1,890 • 1M</div>
+            </button>
+            <button onclick="addModule('bell')" class="config-module border border-black/10 p-3 text-left hover:border-black transition">
+              <div class="font-display font-semibold text-sm leading-none">Bell Push</div>
+              <div class="mono text-[10px] text-black/50">₹ 380 • 1M</div>
+            </button>
+            <button onclick="addModule('blank')" class="config-module border border-black/10 p-3 text-left hover:border-black transition">
+              <div class="font-display font-semibold text-sm leading-none">Blank Plate</div>
+              <div class="mono text-[10px] text-black/50">₹ 120 • 1M</div>
+            </button>
+          </div>
+          <button onclick="clearCfg()" class="w-full mt-4 border border-black/10 mono text-[11px] tracking-widest py-2 hover:bg-black hover:text-white transition">CLEAR BUILDER</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFESSIONALS -->
+<section id="professionals" class="bg-[#0A0A0B] text-white py-16 md:py-24">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-10">
+      <div>
+        <div class="mono text-[10px] tracking-[0.3em] text-white/40 mb-3">10 — FOR PROFESSIONALS</div>
+        <h2 class="font-display text-[30px] md:text-[40px] leading-none tracking-[-0.03em]">BUILT FOR<br><span class="italic font-light text-white/60">PEOPLE WHO BUILD.</span></h2>
+        <div class="mt-8 grid grid-cols-2 gap-3 mono text-[11px] tracking-[0.12em] font-bold">
+          <button onclick="setProTab('architects')" class="pro-tab active bg-white text-black py-3">ARCHITECTS</button>
+          <button onclick="setProTab('designers')" class="pro-tab border border-white/15 py-3 hover:bg-white hover:text-black transition">INTERIOR DESIGNERS</button>
+          <button onclick="setProTab('electricians')" class="pro-tab border border-white/15 py-3 hover:bg-white hover:text-black transition">ELECTRICIANS</button>
+          <button onclick="setProTab('dealers')" class="pro-tab border border-white/15 py-3 hover:bg-white hover:text-black transition">DEALERS</button>
+        </div>
+        <div id="pro-content" class="mt-8 bg-[#141416] border border-white/10 p-6">
+          <h3 class="font-display text-[20px] font-semibold">Architects — Spec with confidence.</h3>
+          <p class="text-sm text-white/60 leading-relaxed mt-2">Revit, AutoCAD, BIM, IES files. 12-year warranty docs, fire ratings, and a dedicated spec manager who replies in 2 hours.</p>
+          <ul class="mt-4 space-y-2 mono text-[11px] text-white/70">
+            <li class="flex gap-2"><span class="text-[#D6FF2C]">—</span> BIM & Revit families • DWG blocks • IES photometry</li>
+            <li class="flex gap-2"><span class="text-[#D6FF2C]">—</span> NBS Chorus & MasterSpec clauses</li>
+            <li class="flex gap-2"><span class="text-[#D6FF2C]">—</span> CPD: “Lighting for Wellbeing” — 1 LU/HSW</li>
+          </ul>
+          <div class="mt-6 flex gap-2">
+            <a href="#" class="bg-[#D6FF2C] text-black mono text-[11px] font-bold px-5 py-2.5">DOWNLOAD SPEC KIT</a>
+            <a href="#" class="border border-white/15 mono text-[11px] font-bold px-5 py-2.5 hover:bg-white hover:text-black transition">BOOK A CPD</a>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white text-black p-6 md:p-8 border border-black/5">
+        <div class="flex items-center justify-between">
+          <div class="mono text-[11px] tracking-[0.14em] font-bold">SPECIFICATION DOWNLOADS</div>
+          <span class="mono text-[10px] bg-black text-white px-2 py-1">UPDATED — MAY 2025</span>
+        </div>
+        <div class="mt-6 space-y-3 mono text-sm">
+          <a href="#" class="flex items-center gap-4 p-3 border border-black/10 hover:border-black hover:bg-[#F5F3EF] transition">
+            <span class="w-10 h-10 bg-black text-white flex items-center justify-center">◧</span>
+            <span class="flex-1"><span class="font-bold block text-[13px]">EDGE Aura — Technical Datasheet</span><span class="text-[11px] text-black/50">PDF • 2.4 MB • 16A, 6A, dimmer, USB-C</span></span>
+            <span class="text-xl">↓</span>
+          </a>
+          <a href="#" class="flex items-center gap-4 p-3 border border-black/10 hover:border-black hover:bg-[#F5F3EF] transition">
+            <span class="w-10 h-10 bg-[#D6FF2C] text-black flex items-center justify-center">⬢</span>
+            <span class="flex-1"><span class="font-bold block text-[13px]">Lumen COB IES Files — Pack</span><span class="text-[11px] text-black/50">ZIP • 18 MB • 12W / 18W / 24W</span></span>
+            <span class="text-xl">↓</span>
+          </a>
+          <a href="#" class="flex items-center gap-4 p-3 border border-black/10 hover:border-black hover:bg-[#F5F3EF] transition">
+            <span class="w-10 h-10 bg-white border border-black/10 flex items-center justify-center">▭</span>
+            <span class="flex-1"><span class="font-bold block text-[13px]">Revit & BIM Families — Full Library</span><span class="text-[11px] text-black/50">RFA • 42 MB • Revit 2021+</span></span>
+            <span class="text-xl">↓</span>
+          </a>
+          <a href="#" class="flex items-center gap-4 p-3 border border-black/10 hover:border-black hover:bg-[#F5F3EF] transition">
+            <span class="w-10 h-10 bg-black text-white flex items-center justify-center">≡</span>
+            <span class="flex-1"><span class="font-bold block text-[13px]">NBS MasterSpec Clauses</span><span class="text-[11px] text-black/50">DOCX • Wiring devices — Section 26 27 26</span></span>
+            <span class="text-xl">↓</span>
+          </a>
+        </div>
+        <div class="mt-6 p-4 bg-[#F5F3EF] border border-black/5 flex gap-3">
+          <div class="w-10 h-10 bg-[#D6FF2C] flex items-center justify-center font-bold">?</div>
+          <div class="flex-1">
+            <div class="font-display font-semibold text-sm">Need a spec manager?</div>
+            <div class="mono text-[11px] text-black/60">We assign a human in 2 hours — not a bot.</div>
+          </div>
+          <button class="mono text-[11px] font-bold border border-black/15 px-4 py-2 bg-white hover:bg-black hover:text-white transition">REQUEST REP</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-[#050507] text-white border-t border-white/5">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10 py-12 md:py-16">
+    <div class="grid lg:grid-cols-[1.2fr_0.8fr_0.8fr_1fr] gap-10">
+      <div>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 bg-white text-black flex items-center justify-center font-display font-bold leading-none text-xs text-center">ED<br>GE</div>
+          <span class="font-display font-bold tracking-[0.16em]">EDGE</span>
+          <span class="mono text-[9px] tracking-[0.2em] text-white/40 border-l border-white/10 pl-3 ml-1">ARCHITECTURAL ELECTRICAL<br>MADE IN INDIA — SINCE 1998</span>
+        </div>
+        <p class="text-sm text-white/60 leading-relaxed mt-5 max-w-[380px]">We don’t sell switches. We sell the feeling when a room obeys your touch. Precision, silence, and light that remembers you.</p>
+        <div class="mt-6 flex gap-2 mono text-[11px]">
+          <span class="px-3 py-1.5 bg-[#D6FF2C] text-black font-bold">12Y WARRANTY</span>
+          <span class="px-3 py-1.5 border border-white/15">MADE IN INDIA</span>
+          <span class="px-3 py-1.5 border border-white/15">ISO 9001</span>
+        </div>
+      </div>
+      <div>
+        <div class="mono text-[11px] tracking-[0.2em] font-bold text-white/90 mb-4">PRODUCTS</div>
+        <ul class="space-y-2.5 mono text-[13px] text-white/60">
+          <li><a href="#" class="hover:text-white transition">Switches — Aura Series</a></li>
+          <li><a href="#" class="hover:text-white transition">Dimmers & Regulators</a></li>
+          <li><a href="#" class="hover:text-white transition">LED COB & Panels</a></li>
+          <li><a href="#" class="hover:text-white transition">Profiles & Strips</a></li>
+          <li><a href="#" class="hover:text-white transition">Sockets & USB-C</a></li>
+          <li><a href="#" class="hover:text-white transition">Modular Accessories</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mono text-[11px] tracking-[0.2em] font-bold text-white/90 mb-4">EXPERIENCE</div>
+        <ul class="space-y-2.5 mono text-[13px] text-white/60">
+          <li><a href="#quotation" class="hover:text-white transition">Get Quotation in 60s</a></li>
+          <li><a href="#visualizer" class="hover:text-white transition">AR Visualizer</a></li>
+          <li><a href="#room-designer" class="hover:text-white transition">Room Designer</a></li>
+          <li><a href="#configurator" class="hover:text-white transition">Switch Builder</a></li>
+          <li><a href="#" class="hover:text-white transition">Find Electrician</a></li>
+          <li><a href="#professionals" class="hover:text-white transition">For Professionals</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mono text-[11px] tracking-[0.2em] font-bold text-white/90 mb-4">STAY ELECTRIC</div>
+        <p class="mono text-[11px] text-white/50 leading-relaxed">New finishes, limited editions, and CPD invites — no spam, unsubscribe anytime.</p>
+        <div class="mt-4 flex">
+          <input placeholder="YOUR EMAIL" class="flex-1 bg-white/5 border border-white/10 px-4 py-3 mono text-[11px] tracking-widest placeholder:text-white/30 focus:outline-none focus:border-[#D6FF2C]">
+          <button class="bg-[#D6FF2C] text-black mono text-[11px] font-bold px-6 tracking-widest hover:bg-white transition">JOIN</button>
+        </div>
+        <div class="mt-6 flex items-center gap-4 mono text-[11px] text-white/40">
+          <a href="#" class="hover:text-white transition">INSTAGRAM</a>
+          <span class="w-1 h-1 bg-white/20 rounded-full"></span>
+          <a href="#" class="hover:text-white transition">LINKEDIN</a>
+          <span class="w-1 h-1 bg-white/20 rounded-full"></span>
+          <a href="#" class="hover:text-white transition">YOUTUBE</a>
+        </div>
+      </div>
+    </div>
+    <div class="mt-12 pt-8 border-t border-white/5 flex flex-wrap gap-6 items-center justify-between mono text-[11px] tracking-[0.14em] text-white/30">
+      <span>© 2025 EDGE ELECTRICALS PVT. LTD. • CIN: U31900MH1998PTC114302 • MADE WITH PRECISION IN MUMBAI</span>
+      <span class="flex gap-6"><a href="#" class="hover:text-white transition">PRIVACY</a><a href="#" class="hover:text-white transition">TERMS</a><a href="#" class="hover:text-white transition">WARRANTY</a><a href="#" class="hover:text-white transition">CONTACT</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- QUOTE DRAWER -->
+<div id="quote-drawer" class="fixed inset-0 z-50 hidden">
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleQuote()"></div>
+  <div class="absolute right-0 top-0 h-full w-full max-w-[420px] bg-[#F5F3EF] shadow-2xl flex flex-col translate-x-full transition-transform duration-300" id="quote-panel">
+    <div class="p-6 border-b border-black/10 flex items-center justify-between bg-white">
+      <div>
+        <div class="font-display font-bold tracking-tight">YOUR QUOTE</div>
+        <div class="mono text-[11px] text-black/50" id="quote-sub">0 items • Live pricing</div>
+      </div>
+      <button onclick="toggleQuote()" class="w-9 h-9 border border-black/10 flex items-center justify-center hover:bg-black hover:text-white transition">✕</button>
+    </div>
+    <div id="quote-items" class="flex-1 overflow-auto p-6 space-y-3">
+      <div class="text-center py-16 mono text-sm text-black/40">No products yet.<br>Tap “Add to Quote” on any product.</div>
+    </div>
+    <div class="p-6 border-t border-black/10 bg-white space-y-3">
+      <div class="flex justify-between mono text-sm font-bold"><span>TOTAL</span><span id="quote-total">₹ 0</span></div>
+      <button class="w-full bg-black text-white mono text-[11px] tracking-[0.14em] font-bold py-3.5 hover:bg-[#1a1a1e] transition">REQUEST FINAL QUOTE →</button>
+      <button class="w-full border border-black/15 mono text-[11px] tracking-[0.14em] font-bold py-3 hover:bg-black hover:text-white transition">SHARE ON WHATSAPP</button>
+      <div class="mono text-[10px] text-black/40 text-center">Dealer will confirm stock & installation in 2 hours</div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div id="product-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-6">
+  <div class="absolute inset-0 bg-black/70 backdrop-blur" onclick="closeProduct()"></div>
+  <div class="relative bg-white max-w-[760px] w-full border border-black/10 shadow-2xl overflow-hidden">
+    <div class="grid md:grid-cols-2">
+      <div class="bg-[#F5F3EF] p-8 flex items-center justify-center">
+        <div class="w-[200px] h-[120px] bg-[#EDEBE6] rounded-xl border border-black/10 flex items-center justify-center gap-2 p-3">
+          <div class="flex-1 h-full bg-white rounded-lg border flex items-center justify-center"><div class="w-12 h-12 bg-[#0A0A0B] rounded"></div></div>
+          <div class="flex-1 h-full bg-white rounded-lg border flex items-center justify-center"><div class="w-3 h-10 bg-black/10 rounded"></div></div>
+        </div>
+      </div>
+      <div class="p-7">
+        <div class="mono text-[10px] tracking-[0.2em] text-black/40">SKU: EA-SW-2M-PURE • 12Y WARRANTY</div>
+        <h3 class="font-display text-[22px] font-bold mt-1">Aura 2M Switch — Snow White</h3>
+        <p class="text-sm text-black/60 leading-relaxed mt-2">Soft actuation at 1.2N, 40,000 cycles, silver-alloy contacts, flame-retardant polycarbonate. Fingerprint-proof matte.</p>
+        <div class="mt-4 flex gap-2 mono text-[10px]"><span class="px-2 py-1 bg-black text-white">16A</span><span class="px-2 py-1 border border-black/10">IP20</span><span class="px-2 py-1 bg-[#D6FF2C] font-bold">40K CLICKS</span></div>
+        <div class="mt-6 flex items-baseline gap-3"><span class="font-bold text-xl">₹ 1,420</span><span class="mono text-xs line-through text-black/30">₹ 1,680</span></div>
+        <div class="mt-6 grid grid-cols-2 gap-2">
+          <button onclick="addToQuote('Aura 2M Switch — Snow White','₹ 1,420');closeProduct()" class="bg-black text-white mono text-[11px] font-bold py-3">ADD TO QUOTE</button>
+          <button onclick="closeProduct()" class="border border-black/15 mono text-[11px] font-bold py-3">CLOSE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// INTRO
+let p=0;
+const bar=document.getElementById('loader-bar');
+const pct=document.getElementById('loader-percent');
+const introLine=document.getElementById('intro-line');
+const intro=document.getElementById('intro');
+let introInterval=setInterval(()=>{
+  p+= p<60? Math.random()*9+4 : p<90? Math.random()*4+2 : Math.random()*2+0.6;
+  if(p>=100){p=100;clearInterval(introInterval);triggerIntroDone();}
+  if(pct) pct.textContent=String(Math.floor(p)).padStart(2,'0')+'%';
+  if(bar) bar.style.width=p+'%';
+  if(introLine) introLine.style.strokeDashoffset=(352 - (p/100)*352);
+},45);
+function triggerIntroDone(){
+  setTimeout(()=>{
+    document.getElementById('edge-text').style.opacity='1';
+    document.getElementById('edge-text').style.transition='opacity .6s';
+  },200);
+  setTimeout(skipIntro,700);
+}
+function skipIntro(){
+  clearInterval(introInterval);
+  intro.style.opacity='0';
+  intro.style.visibility='hidden';
+  document.body.style.overflow='auto';
+  activateHeroLights();
+}
+document.body.style.overflow='hidden';
+
+// NAV SCROLL
+const navbar=document.getElementById('navbar');
+const navLogo=document.getElementById('nav-logo');
+window.addEventListener('scroll',()=>{
+  if(window.scrollY>60){
+    navbar.classList.add('bg-[#0A0A0B]/90','backdrop-blur-xl','border-white/5');
+    navbar.classList.remove('border-transparent');
+  }else{
+    navbar.classList.remove('bg-[#0A0A0B]/90','backdrop-blur-xl','border-white/5');
+    navbar.classList.add('border-transparent');
+  }
+});
+document.getElementById('mobile-btn').addEventListener('click',()=>{
+  document.getElementById('mobile-menu').classList.toggle('hidden');
+});
+
+// HERO LIGHTS
+function activateHeroLights(){
+  document.querySelectorAll('.light-glow').forEach((el,i)=>{
+    setTimeout(()=>el.classList.add('active'), 400+i*320);
+  });
+}
+
+// SHOWCASE SCROLL
+const showcaseWrap=document.getElementById('showcase-sticky-wrap');
+const progressBar=document.getElementById('showcase-progress');
+const progressPct=document.getElementById('showcase-percent');
+const layerPlate=document.getElementById('layer-plate');
+const layerMech=document.getElementById('layer-mech');
+const layerFrame=document.getElementById('layer-frame');
+const switchRoom=document.getElementById('switch-room');
+const switchGlow=document.getElementById('switch-glow');
+const steps=document.querySelectorAll('.step');
+function handleShowcase(){
+  if(!showcaseWrap) return;
+  const rect=showcaseWrap.getBoundingClientRect();
+  const total=rect.height - window.innerHeight;
+  let prog= -rect.top / total;
+  prog=Math.max(0,Math.min(1,prog));
+  if(progressBar) progressBar.style.width=(prog*100).toFixed(1)+'%';
+  if(progressPct) progressPct.textContent=String(Math.floor(prog*100)).padStart(2,'0')+'%';
+  // layers
+  if(layerPlate && layerMech && layerFrame){
+    if(prog<0.25){
+      const t=prog/0.25;
+      layerPlate.style.transform=`translate3d(0,0,0) rotateY(${t*18}deg)`;
+      layerMech.style.transform=`translate3d(0,40px,0) scale(.9)`;
+      layerMech.style.opacity='0';
+      layerFrame.style.transform=`scale(${1+t*0.08})`;
+      switchRoom.style.opacity='0';
+      switchGlow.style.opacity='0';
+    } else if(prog<0.5){
+      const t=(prog-0.25)/0.25;
+      layerPlate.style.transform=`translate3d(0,${-t*50}px,0) rotateY(18deg)`;
+      layerMech.style.transform=`translate3d(0,${40 - t*90}px,0) scale(1)`;
+      layerMech.style.opacity='1';
+      layerFrame.style.transform=`scale(1.08)`;
+      switchRoom.style.opacity='0';
+      switchGlow.style.opacity='0';
+    } else if(prog<0.75){
+      const t=(prog-0.5)/0.25;
+      layerPlate.style.transform=`translate3d(0,${-50 + t*50}px,0) rotateY(${18 - t*18}deg)`;
+      layerMech.style.transform=`translate3d(0,${-50 + t*50}px,0) scale(1)`;
+      layerFrame.style.transform=`scale(${1.08 - t*0.08})`;
+      switchRoom.style.opacity= t>0.6? (t-0.6)/0.4 : 0;
+      switchGlow.style.opacity= t>0.5? '1':'0';
+      if(t>0.7) switchGlow.style.boxShadow='0 0 12px #D6FF2C';
+    } else {
+      const t=(prog-0.75)/0.25;
+      layerPlate.style.opacity= String(1 - t);
+      layerMech.style.opacity= String(1 - t);
+      layerFrame.style.opacity= String(1 - t);
+      switchRoom.style.opacity='1';
+      switchGlow.style.opacity='1';
+    }
+  }
+  // steps highlight
+  const idx = prog<0.25?0: prog<0.5?1: prog<0.75?2:3;
+  steps.forEach((s,i)=>{
+    if(i===idx){ s.classList.add('bg-white','border-black/5','shadow-sm'); s.classList.remove('bg-white/50'); s.style.opacity='1';}
+    else { s.classList.remove('bg-white','shadow-sm'); s.classList.add('bg-white/50'); s.style.opacity='.75';}
+  });
+}
+window.addEventListener('scroll', handleShowcase);
+window.addEventListener('load', handleShowcase);
+
+// REVEAL
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// QUOTE DRAWER
+let quoteItems=[];
+let quoteTotalValue=0;
+function parsePrice(str){ return parseInt(str.replace(/[^\d]/g,''))||0; }
+function toggleQuote(){
+  const drawer=document.getElementById('quote-drawer');
+  const panel=document.getElementById('quote-panel');
+  if(drawer.classList.contains('hidden')){
+    drawer.classList.remove('hidden');
+    setTimeout(()=>panel.style.transform='translateX(0)',10);
+  } else {
+    panel.style.transform='translateX(100%)';
+    setTimeout(()=>drawer.classList.add('hidden'),300);
+  }
+}
+function addToQuote(name,price){
+  quoteItems.push({name,price, val:parsePrice(price)});
+  renderQuote();
+  toggleQuote();
+  if(quoteItems.length===1) setTimeout(toggleQuote,1200);
+  // show count
+  const c=document.getElementById('quote-count');
+  c.textContent=quoteItems.length;
+  c.classList.remove('hidden');
+}
+function renderQuote(){
+  const cont=document.getElementById('quote-items');
+  const sub=document.getElementById('quote-sub');
+  const totalEl=document.getElementById('quote-total');
+  if(quoteItems.length===0){
+    cont.innerHTML='<div class="text-center py-16 mono text-sm text-black/40">No products yet.<br>Tap “Add to Quote” on any product.</div>';
+    sub.textContent='0 items • Live pricing';
+    totalEl.textContent='₹ 0';
+    return;
+  }
+  let total=0;
+  cont.innerHTML=quoteItems.map((it,i)=>{ total+=it.val; return `<div class="flex gap-3 p-3 bg-white border border-black/5">
+    <div class="w-12 h-12 bg-[#F5F3EF] border border-black/10 flex items-center justify-center">◧</div>
+    <div class="flex-1"><div class="font-display text-sm font-semibold leading-tight">${it.name}</div><div class="mono text-xs text-black/50 mt-1">${it.price} • Qty 1</div></div>
+    <button onclick="removeQuote(${i})" class="mono text-[11px] text-black/30 hover:text-black">✕</button>
+  </div>`}).join('');
+  sub.textContent=quoteItems.length+' items • Live pricing';
+  totalEl.textContent='₹ '+total.toLocaleString('en-IN');
+}
+function removeQuote(i){ quoteItems.splice(i,1); renderQuote(); const c=document.getElementById('quote-count'); c.textContent=quoteItems.length; if(quoteItems.length===0) c.classList.add('hidden');}
+function openProduct(){ document.getElementById('product-modal').classList.remove('hidden'); document.getElementById('product-modal').classList.add('flex');}
+function closeProduct(){ document.getElementById('product-modal').classList.add('hidden'); document.getElementById('product-modal').classList.remove('flex');}
+function openFindElectrician(){ alert('Finding EDGE Electricians near you — we would open map + pincode input here.');}
+
+// AI QUOTATION
+const dropZone=document.getElementById('drop-zone');
+if(dropZone){
+  dropZone.addEventListener('dragover',e=>{e.preventDefault(); dropZone.classList.add('border-black','bg-white')});
+  dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('border-black','bg-white'));
+  dropZone.addEventListener('drop',e=>{e.preventDefault(); handleQuoteFile({files:e.dataTransfer.files});});
+  dropZone.addEventListener('click',()=>document.getElementById('quote-file').click());
+}
+function handleQuoteFile(input){
+  const file=input.files?input.files[0]:null;
+  document.getElementById('quote-status').textContent=file? 'ANALYZING…':'READY TO UPLOAD';
+  document.getElementById('quote-status').className='mono text-[10px] px-2 py-1 bg-black text-white font-bold';
+  document.getElementById('flow-2').style.opacity='1';
+  document.getElementById('flow-2').classList.remove('opacity-60');
+  setTimeout(()=>{
+    document.getElementById('flow-3').style.opacity='1';
+    document.getElementById('flow-3').classList.remove('opacity-60');
+    document.getElementById('quote-result').classList.remove('hidden');
+    document.getElementById('quote-status').textContent='QUOTE READY ✓';
+    document.getElementById('quote-status').className='mono text-[10px] px-2 py-1 bg-[#D6FF2C] text-black font-bold';
+  },900);
+}
+
+// VISUALIZER
+let vizDragging=false, vizOffsetX=0, vizOffsetY=0, startX=0, startY=0;
+const vizProduct=document.getElementById('viz-product');
+const vizStage=document.getElementById('viz-stage');
+function setVizModel(m){
+  document.querySelectorAll('.viz-model').forEach(el=>{el.classList.remove('active','border-2','border-black','bg-[#F5F3EF]');el.classList.add('border','border-black/10','bg-white','opacity-70')});
+  event.currentTarget.classList.add('active','border-2','border-black','bg-[#F5F3EF]'); event.currentTarget.classList.remove('opacity-70','border-black/10');
+}
+function setVizFinish(bg, inner){
+  vizProduct.style.background=bg;
+  vizProduct.querySelector('div').style.background= inner===' #ffffff'? '#ffffff': bg===' #0A0A0B'? '#252529':'white';
+  document.getElementById('viz-finish-name').textContent= bg==='#EDEBE6'? 'Snow White — Soft matte, fingerprint resistant' : bg==='#0A0A0B'? 'Graphite — Deep matte, anti-glare' : bg==='#C9A86A'? 'Champagne Gold — Brushed metallic' : 'Electric Lime — Signature accent';
+  document.querySelectorAll('.viz-finish').forEach(b=>b.classList.remove('ring-2','ring-black/20','border-2','border-black'));
+  event.currentTarget.classList.add('ring-2','ring-black/20','border-2','border-black');
+}
+if(vizProduct && vizStage){
+  vizProduct.addEventListener('pointerdown',e=>{
+    vizDragging=true; vizProduct.setPointerCapture(e.pointerId);
+    const rect=vizStage.getBoundingClientRect();
+    const prodRect=vizProduct.getBoundingClientRect();
+    startX=e.clientX - prodRect.left; startY=e.clientY - prodRect.top;
+    e.preventDefault();
+  });
+  vizProduct.addEventListener('pointermove',e=>{
+    if(!vizDragging) return;
+    const rect=vizStage.getBoundingClientRect();
+    let x=e.clientX - rect.left - startX;
+    let y=e.clientY - rect.top - startY;
+    x=Math.max(0,Math.min(rect.width-96,x));
+    y=Math.max(0,Math.min(rect.height-62,y));
+    vizProduct.style.left=x+'px'; vizProduct.style.top=y+'px';
+    document.getElementById('viz-glow').style.left=(x-2)+'px';
+    document.getElementById('viz-glow').style.top=(y-8)+'px';
+  });
+  vizProduct.addEventListener('pointerup',()=>vizDragging=false);
+}
+const vizBrightness=document.getElementById('viz-brightness');
+if(vizBrightness){
+  vizBrightness.addEventListener('input',e=>{
+    document.getElementById('viz-brightness-val').textContent=e.target.value+'%';
+    document.getElementById('viz-brightness-bar').style.width=e.target.value+'%';
+    document.getElementById('viz-glow').style.opacity= (e.target.value/100)*0.6;
+  });
+}
+
+// ABOUT SWITCH
+let aboutOn=false;
+function toggleAboutSwitch(){
+  aboutOn=!aboutOn;
+  const glow=document.getElementById('about-glow');
+  const status=document.getElementById('about-status');
+  const g1=document.getElementById('toggle-glow-1');
+  const k1=document.getElementById('toggle-knob-1');
+  const g2=document.getElementById('toggle-glow-2');
+  const k2=document.getElementById('toggle-knob-2');
+  if(aboutOn){
+    glow.style.opacity='1';
+    status.textContent='SYSTEM LIVE — 12V • 2.4A • EDGE GRID ONLINE';
+    status.classList.add('text-[#D6FF2C]');
+    g1.style.opacity='1'; k1.style.transform='translateY(2px)'; k1.classList.add('bg-[#D6FF2C]');
+    setTimeout(()=>{g2.style.opacity='1'; k2.style.transform='translateY(2px)'; k2.classList.add('bg-[#D6FF2C]')},260);
+  } else {
+    glow.style.opacity='0';
+    status.textContent='SYSTEM STANDBY — TAP SWITCH';
+    status.classList.remove('text-[#D6FF2C]');
+    g1.style.opacity='0'; k1.style.transform=''; k1.classList.remove('bg-[#D6FF2C]');
+    g2.style.opacity='0'; k2.style.transform=''; k2.classList.remove('bg-[#D6FF2C]');
+  }
+}
+
+// ROOM DESIGNER
+let roomProduct='switch';
+let roomPins=0;
+function setRoomProduct(p){
+  roomProduct=p;
+  document.querySelectorAll('.room-palette').forEach(b=>{b.classList.remove('active','bg-[#D6FF2C]','text-black');b.classList.add('bg-white/10','border','border-white/15')});
+  event.currentTarget.classList.add('active','bg-[#D6FF2C]','text-black');
+  event.currentTarget.classList.remove('bg-white/10');
+}
+function handleRoomUpload(input){
+  const file=input.files[0];
+  if(!file) return;
+  const url=URL.createObjectURL(file);
+  document.getElementById('room-image').src=url;
+}
+function clearRoom(){
+  document.querySelectorAll('.room-pin').forEach(e=>e.remove());
+  roomPins=0; document.getElementById('room-count').textContent='0 products placed';
+}
+function placeRoomPin(e){
+  if(e.target.closest('.room-pin')) return;
+  const stage=document.getElementById('room-stage');
+  const rect=stage.getBoundingClientRect();
+  const x=((e.clientX - rect.left)/rect.width)*100;
+  const y=((e.clientY - rect.top)/rect.height)*100;
+  const pin=document.createElement('div');
+  pin.className='room-pin pin absolute w-[38px] h-[26px] bg-[#EDEBE6] border border-black/15 shadow-[0_8px_20px_rgba(0,0,0,0.3)] rounded-[4px] flex items-center justify-center cursor-move';
+  pin.style.left=x+'%'; pin.style.top=y+'%';
+  pin.style.transform='translate(-50%,-50%)';
+  if(roomProduct==='cob') pin.innerHTML='<div class="w-5 h-5 rounded-full bg-white border border-black/10"></div>';
+  else if(roomProduct==='profile') pin.innerHTML='<div class="w-6 h-2 bg-white border border-black/10"></div>';
+  else if(roomProduct==='socket') pin.innerHTML='<span class="mono text-[8px] font-bold">16A</span>';
+  else pin.innerHTML='<div class="w-5 h-5 bg-[#0A0A0B] rounded-sm"></div>';
+  const glow=document.createElement('div');
+  glow.className='absolute -z-10 w-10 h-10 bg-[#D6FF2C]/20 blur-xl rounded-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none';
+  pin.appendChild(glow);
+  const del=document.createElement('button');
+  del.textContent='✕'; del.className='absolute -top-1.5 -right-1.5 w-4 h-4 bg-black text-white rounded-full mono text-[8px] flex items-center justify-center';
+  del.onclick=(ev)=>{ev.stopPropagation(); pin.remove(); roomPins--; document.getElementById('room-count').textContent=roomPins+' products placed';};
+  pin.appendChild(del);
+  stage.appendChild(pin);
+  roomPins++; document.getElementById('room-count').textContent=roomPins+' products placed';
+  // draggable
+  let dragging=false, offsetX, offsetY;
+  pin.addEventListener('pointerdown',ev=>{
+    if(ev.target===del) return;
+    dragging=true; pin.setPointerCapture(ev.pointerId);
+    const r=pin.getBoundingClientRect(); offsetX=ev.clientX - r.left; offsetY=ev.clientY - r.top; ev.preventDefault();
+  });
+  pin.addEventListener('pointermove',ev=>{
+    if(!dragging) return;
+    const r=stage.getBoundingClientRect();
+    let nx=ev.clientX - r.left - offsetX + pin.offsetWidth/2;
+    let ny=ev.clientY - r.top - offsetY + pin.offsetHeight/2;
+    nx=Math.max(0,Math.min(r.width,nx)); ny=Math.max(0,Math.min(r.height,ny));
+    pin.style.left=(nx/r.width*100)+'%'; pin.style.top=(ny/r.height*100)+'%';
+  });
+  pin.addEventListener('pointerup',()=>dragging=false);
+}
+
+// CONFIGURATOR
+let cfgModules=[{type:'switch',label:'Switch 6A',price:420,span:1},{type:'switch',label:'Switch 6A',price:420,span:1}];
+let cfgFrameSize=4;
+let cfgFinish='Snow White';
+function setFrame(n){
+  cfgFrameSize=n;
+  document.querySelectorAll('.cfg-frame').forEach(b=>{b.classList.remove('active','bg-black','text-white','border-black');b.classList.add('border-black/10')});
+  event.currentTarget.classList.add('active','bg-black','text-white','border-black');
+  document.getElementById('cfg-frame-label').textContent=n+'M — '+cfgFinish.toUpperCase();
+  renderCfg();
+}
+function setCfgFinish(name){
+  cfgFinish=name;
+  document.querySelectorAll('.cfg-finish').forEach(b=>b.classList.remove('active','border-2','border-black'));
+  event.currentTarget.classList.add('active','border-2','border-black');
+  document.getElementById('cfg-frame-label').textContent=cfgFrameSize+'M — '+name.toUpperCase();
+  const preview=document.getElementById('cfg-preview');
+  preview.style.background= name==='Graphite'? '#0A0A0B' : name==='Champagne'? '#F5E6C8' : name==='Titanium'? '#E8E8EA' : '#EDEBE6';
+}
+function addModule(type){
+  const map={switch:{label:'Switch 6A',price:420,span:1},dimmer:{label:'Dimmer',price:890,span:1},socket:{label:'Socket 16A',price:560,span:2},usbc:{label:'USB-C 45W',price:1890,span:1},bell:{label:'Bell Push',price:380,span:1},blank:{label:'Blank',price:120,span:1}};
+  const needed=map[type].span;
+  let used=cfgModules.reduce((a,b)=>a+b.span,0);
+  if(used+needed>cfgFrameSize){ alert('Not enough space in '+cfgFrameSize+'M frame. Choose larger frame or remove a module.'); return;}
+  cfgModules.push({type, ...map[type]});
+  renderCfg();
+}
+function clearCfg(){ cfgModules=[]; renderCfg(); }
+function renderCfg(){
+  const grid=document.getElementById('cfg-grid');
+  grid.style.gridTemplateColumns=`repeat(${cfgFrameSize<=4?2: cfgFrameSize===6?3:4},1fr)`;
+  if(cfgModules.length===0){ grid.innerHTML='<div class="col-span-full py-10 text-center mono text-xs text-black/40">Tap modules to build your plate</div>';}
+  else {
+    grid.innerHTML=cfgModules.map((m,i)=>`
+      <div class="relative bg-[#F5F3EF] border border-black/10 rounded-[8px] p-3 flex flex-col items-center justify-center gap-2 min-h-[74px] group" style="grid-column: span ${m.span}">
+        <div class="w-10 h-10 ${m.type==='socket'?'bg-white border border-black/10':'bg-[#0A0A0B]'} rounded-[6px] flex items-center justify-center text-[10px] ${m.type==='socket'?'text-black':'text-white'}">${m.type==='switch'?'━':m.type==='dimmer'?'◐':m.type==='socket'?'16A':m.type==='usbc'?'⚡':'•'}</div>
+        <span class="mono text-[9px] tracking-widest font-bold">${m.label.toUpperCase()}</span>
+        <button onclick="removeCfg(${i})" class="absolute -top-1.5 -right-1.5 w-5 h-5 bg-black text-white rounded-full mono text-[10px] opacity-0 group-hover:opacity-100 transition">✕</button>
+      </div>
+    `).join('');
+  }
+  const basePrice=cfgFrameSize===2?380: cfgFrameSize===4?650: cfgFrameSize===6?820: 990;
+  const total= basePrice + cfgModules.reduce((a,b)=>a+b.price,0);
+  document.getElementById('cfg-price').textContent='₹ '+total.toLocaleString('en-IN');
+}
+function removeCfg(i){ cfgModules.splice(i,1); renderCfg(); }
+renderCfg();
+
+// PROFESSIONALS
+function setProTab(tab){
+  document.querySelectorAll('.pro-tab').forEach(b=>{b.classList.remove('active','bg-white','text-black');b.classList.add('border','border-white/15')});
+  event.currentTarget.classList.add('active','bg-white','text-black');
+  event.currentTarget.classList.remove('border-white/15');
+  const content=document.getElementById('pro-content');
+  const data={
+    architects:{title:'Architects — Spec with confidence.', desc:'Revit, AutoCAD, BIM, IES files. 12-year warranty docs, fire ratings, and a dedicated spec manager who replies in 2 hours.'},
+    designers:{title:'Interior Designers — Curate, don’t compromise.', desc:'360 finishes, mood-board kits, and a designer portal that builds client quotes with your margin baked in.'},
+    electricians:{title:'Electricians — Install faster, earn more.', desc:'Tool-free snap-fit, 30% faster wiring, video training, and priority stock at your nearest dealer.'},
+    dealers:{title:'Dealers & Distributors — Stock that moves.', desc:'68% repeat orders, 12-day inventory turns, co-branded displays and lead sharing from edge.com.'}
+  };
+  content.querySelector('h3').textContent=data[tab].title;
+  content.querySelector('p').textContent=data[tab].desc;
+}
+</script>
+</body>
+</html>
